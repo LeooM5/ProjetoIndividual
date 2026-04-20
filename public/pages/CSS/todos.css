@@ -1,0 +1,81 @@
+/* HEADER */
+
+.cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 4em;
+    background-color: white;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    transition: .3s;
+    z-index: 99;
+}
+
+.cabecalho.transparente {
+    background-color: transparent;
+}
+
+.cabecalho a {
+    text-decoration: none;
+    font-size: 1.4em;
+    color: #77A649;
+    font-weight: bold;
+    transition: .5s;
+    border-bottom: .1em solid transparent;
+    transition: .3s;
+}
+
+.cabecalho a:hover {
+    transform: scale(1.1);
+    opacity: .8;
+}
+
+.cabecalho .left p {
+    font-size: 2em;
+    color: #77A649;
+    font-weight: bold;
+}
+
+.cabecalho .center {
+    display: flex;
+    width: 30%;
+    justify-content: space-around;
+}
+
+.cabecalho .left {
+    margin-left: 1.5em;
+}
+
+.cabecalho .right {
+    margin-right: 1.5em;
+}
+
+/* FOOTER */
+
+/* RODAPE */
+
+.rodape {
+    display: flex;
+    justify-content: center;
+    height: 5em;
+    background-color: white;
+}
+
+.rodape p {
+    font-size: 1.2em;
+}
+
+.rodape span a {
+    color: #a66026;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: .3s;
+}
+
+.rodape span a:hover {
+    transform: scale(.95);
+    opacity: .5;
+}

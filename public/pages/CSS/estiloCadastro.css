@@ -1,0 +1,171 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Archivo Narrow", sans-serif;
+    background-color: #b6b6b690;
+}
+
+/* HEADER */
+
+.cabecalho a:hover {
+    transform: scale(1.05);
+}
+
+/* CADASTRO */
+
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 5em;
+}
+
+.box {
+    border-radius: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    width: 70em;
+    height: 50em;
+}
+
+.box .left-container {
+    width: 30em;
+    height: 100%;
+    background: url(https://www.puma-catchup.com/wp-content/uploads/2019/06/H2-Grupreet-Singh-Sandhu.jpg);
+    background-position: 65%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-clip: border-box;
+}
+
+.box .right-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 40em;
+}
+
+.box-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 60%;
+    height: 100%;
+    padding: 8em 0;
+}
+
+.cabecalho-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 4em;
+}
+
+.cabecalho-container p a {
+    text-decoration: none;
+    color: green;
+    font-weight: bold;
+}
+
+.inputs-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 16em;
+}
+
+.senha-maior {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.senha-maior div {
+    width: 45%;
+}
+
+.senha-maior div input {
+    width: 100%;
+}
+
+.inputs-container input {
+    border-top-left-radius: .5em;
+    border-top-right-radius: .5em;
+    border: 0;
+    outline: 0;
+    background-color: #9d999925;
+    height: 4em;
+    padding-left: 1em;
+}
+
+.inputs-container input::placeholder {
+    font-size: 1.1em;
+}
+
+.inputs-container input:focus {
+    border-bottom: .1em solid black;
+}
+
+.inputs-container label {
+    font-size: 1em;
+}
+
+.botao-cadastrar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 9em;
+}
+
+.botao-cadastrar button {
+    width: 100%;
+    height: 3em;
+    font-size: 1em;
+    background-color: rgba(0, 100, 0, 0.554);
+    border: 0;
+    border-radius: 1em;
+    transition: .3s;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+}
+
+.botao-cadastrar button:hover {
+    box-shadow: 2px 2px 8px green;
+}
+
+.botao-cadastrar p span {
+    color: green;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.card-atencao {
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    width: 15em;
+    height: 4em;
+    background-color: rgba(255, 0, 0, 0.268);
+    border: 1px solid red;
+    transition: .3s;
+}
+
+.card-atencao h2 {
+    font-size: 1em;
+    text-align: center;
+}

@@ -18,6 +18,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link rel="stylesheet" href="./CSS/todos.css" />
   </head>
 
   <body>
@@ -31,7 +32,7 @@
         <a href="#">Veja a Sua</a>
       </div>
       <div class="right">
-        <a href="#">Login</a>
+        <a href="./login.html">Login</a>
       </div>
     </div>
 
@@ -199,8 +200,8 @@
         sendo federado ou não e a quantide de gols sofridos sendo goleiro.
       </p>
       <div class="botoes">
-        <button>Cadastre-se</button>
-        <button>Entre</button>
+        <button id="cadastre-se">Cadastre-se</button>
+        <button id="entrar">Entre</button>
       </div>
     </div>
 
@@ -212,16 +213,16 @@
         >
       </p>
     </div>
+
+    <script src="./JS/header.js"></script>
+    <script>
+      document.getElementById("cadastre-se").addEventListener("click", () => {
+        window.location = "./cadastro.html";
+      });
+
+      document.getElementById("entrar").addEventListener("click", () => {
+        window.location = "./login.html";
+      });
+    </script>
   </body>
 </html>
-
-<script>
-  window.addEventListener("scroll", function () {
-    let cabecalho = document.querySelector(".cabecalho");
-    if (window.scrollY > 1) {
-      cabecalho.classList.remove("transparente");
-    } else {
-      cabecalho.classList.add("transparente");
-    }
-  });
-</script>

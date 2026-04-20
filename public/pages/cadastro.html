@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="./CSS/todos.css" />
+    <link rel="stylesheet" href="./CSS/estiloCadastro.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+
+  <body>
+    <div class="cabecalho transparente">
+      <div class="left">
+        <p>Minha Jornada</p>
+      </div>
+      <div class="center">
+        <a href="./index.html#principal">Início</a>
+        <a href="./index.html#sobre">Sobre</a>
+        <a href="#">Veja a Sua</a>
+      </div>
+      <div class="right">
+        <a href="./login.html">Login</a>
+      </div>
+    </div>
+
+    <div id="atencaoCard" class="card-atencao">
+      <h2 id="atencao">A senha deve possuir 6 caracteres!</h2>
+    </div>
+
+    <div class="container">
+      <div class="box">
+        <div class="left-container">
+          <img src="" alt="" />
+        </div>
+        <div class="right-container">
+          <div class="box-right">
+            <div class="cabecalho-container">
+              <h1>Crie sua conta</h1>
+              <p>Já possui uma conta? <a href="./login.html">Entre</a></p>
+            </div>
+            <div class="inputs-container">
+              <label for="name">Nome Completo</label>
+              <input
+                placeholder="Seu Nome Aqui"
+                type="text"
+                id="nomeCompleto"
+              />
+              <label for="email">Email</label>
+              <input
+                placeholder="seuemail@exemplo.com"
+                type="text"
+                id="email"
+              />
+              <div class="senha-maior">
+                <div class="senha-menor">
+                  <label for="senha">Senha</label>
+                  <input placeholder="*********" type="password" id="senha" />
+                </div>
+                <div class="confirmar-senha-menor">
+                  <label for="confirmar_senha">Confirmar Senha</label>
+                  <input
+                    placeholder="*********"
+                    type="password"
+                    id="confirmar_senha"
+                  />
+                </div>
+              </div>
+              <span
+                id="coincideSouN"
+                style="
+                  color: red;
+                  text-align: center;
+                  opacity: 0;
+                  transition: 0.3s;
+                "
+                >As senha não coincidem!</span
+              >
+            </div>
+            <div class="botao-cadastrar">
+              <div class="termos">
+                <p>
+                  <input type="checkbox" id="termos" />
+
+                  Eu concordo com os termos de
+                  <span>Serviço e de Privacidade</span>
+                </p>
+              </div>
+              <button onclick="cadastrar()">
+                Criar conta <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script src="./JS/header.js"></script>
+<script>
+  function cadastrar() {
+    let ipt_name = nomeCompleto.value;
+    let ipt_email = email.value;
+    let ipt_senha = senha.value;
+    let ipt_senhaConfirmar = confirmar_senha.value;
+    let caixaAtencao = atencaoCard;
+    let mensagem = atencao;
+    let senhaVetor = ipt_senha.split("");
+    let criterioEspecial = 0;
+
+    let temMaius = ipt_senha != ipt_senha.toLowerCase();
+    let temMinus = ipt_senha != ipt_senha.toUpperCase();
+
+    for (let i = 0; i < senhaVetor.length; i++) {
+      if (
+        senhaVetor[i] < "0" ||
+        (senhaVetor[i] > "9" && senhaVetor[i] < "A") ||
+        (senhaVetor[i] > "Z" && senhaVetor[i] < "a") ||
+        senhaVetor[i] > "z"
+      ) {
+        criterioEspecial++;
+      }
+    }
+
+    if (ipt_email.includes("@")) {
+      if (ipt_senha.length >= 6) {
+        if (temMaius) {
+          if (criterioEspecial >= 1) {
+            if (ipt_senha == ipt_senhaConfirmar) {
+              window.location = "./index.html";
+            } else {
+              coincideSouN.style.opacity = 1;
+            }
+          } else {
+            atencao.innerHTML = "A senha deve conter caractere especial!";
+            caixaAtencao.style.opacity = 1;
+          }
+          if (temMinus) {
+          } else {
+            atencao.innerHTML = "A senha deve conter caractere minúsculo!";
+            caixaAtencao.style.opacity = 1;
+          }
+        } else {
+          atencao.innerHTML = "A senha deve conter caractere maiúsculo!";
+          caixaAtencao.style.opacity = 1;
+        }
+      } else {
+        atencao.innerHTML = "A senha deve possuir mais de 6 caracteres!";
+        caixaAtencao.style.opacity = 1;
+      }
+    } else {
+      atencao.innerHTML = "O email deve ser válido!";
+      caixaAtencao.style.opacity = 1;
+    }
+
+    setTimeout(() => {
+      caixaAtencao.style.opacity = 0;
+    }, 2000);
+
+  }
+</script>
