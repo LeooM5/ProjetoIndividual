@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cadastro</title>
-    <link rel="stylesheet" href="./CSS/todos.css" />
     <link rel="stylesheet" href="./CSS/estiloCadastro.css" />
     <link
       rel="stylesheet"
@@ -16,22 +15,8 @@
   </head>
 
   <body>
-    <div class="cabecalho transparente">
-      <div class="left">
-        <p>Minha Jornada</p>
-      </div>
-      <div class="center">
-        <a href="./index.html#principal">Início</a>
-        <a href="./index.html#sobre">Sobre</a>
-        <a href="#">Veja a Sua</a>
-      </div>
-      <div class="right">
-        <a href="./login.html">Login</a>
-      </div>
-    </div>
-
     <div id="atencaoCard" class="card-atencao">
-      <h2 id="atencao">A senha deve possuir 6 caracteres!</h2>
+      <h2 id="atencao"></h2>
     </div>
 
     <div class="container">
@@ -46,7 +31,7 @@
               <p>Já possui uma conta? <a href="./login.html">Entre</a></p>
             </div>
             <div class="inputs-container">
-              <label for="name">Nome Completo</label>
+              <label for="nomeCompleto">Nome Completo</label>
               <input
                 placeholder="Seu Nome Aqui"
                 type="text"
@@ -103,13 +88,14 @@
   </body>
 </html>
 
-<script src="./JS/header.js"></script>
 <script>
   function cadastrar() {
     let ipt_name = nomeCompleto.value;
     let ipt_email = email.value;
     let ipt_senha = senha.value;
     let ipt_senhaConfirmar = confirmar_senha.value;
+    let ipt_termosServico = termos.checked;
+
     let caixaAtencao = atencaoCard;
     let mensagem = atencao;
     let senhaVetor = ipt_senha.split("");
@@ -134,7 +120,36 @@
         if (temMaius) {
           if (criterioEspecial >= 1) {
             if (ipt_senha == ipt_senhaConfirmar) {
-              window.location = "./index.html";
+              fetch("/usuarios/cadastrar", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  // crie um atributo que recebe o valor recuperado aqui
+                  // Agora vá para o arquivo routes/usuario.js
+                  nomeServer: ipt_name,
+                  emailServer: ipt_email,
+                  senhaServer: ipt_senha,
+                  termosServer: ipt_termosServico,
+                }),
+              })
+                .then(function (resposta) {
+                  console.log("resposta: ", resposta);
+
+                  if (resposta.ok) {
+                    setTimeout(() => {
+                      window.location = "./login.html";
+                    }, "2000");
+                  } else {
+                    throw "Houve um erro ao tentar realizar o cadastro!";
+                  }
+                })
+                .catch(function (resposta) {
+                  console.log(`#ERRO: ${resposta}`);
+                });
+
+              return false;
             } else {
               coincideSouN.style.opacity = 1;
             }
@@ -163,6 +178,5 @@
     setTimeout(() => {
       caixaAtencao.style.opacity = 0;
     }, 2000);
-
   }
 </script>

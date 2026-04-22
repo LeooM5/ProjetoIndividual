@@ -17,7 +17,8 @@
     background-color: transparent;
 }
 
-.cabecalho a {
+.cabecalho a,
+#paragrafo-ao-logar {
     text-decoration: none;
     font-size: 1.4em;
     color: #77A649;
@@ -25,10 +26,16 @@
     transition: .5s;
     border-bottom: .1em solid transparent;
     transition: .3s;
+    display: inline-block;
 }
 
+#nome_usuario {
+    color: black;    
+}
+
+
 .cabecalho a:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
     opacity: .8;
 }
 
@@ -50,6 +57,8 @@
 
 .cabecalho .right {
     margin-right: 1.5em;
+    display: flex;
+    justify-content: center;
 }
 
 /* FOOTER */

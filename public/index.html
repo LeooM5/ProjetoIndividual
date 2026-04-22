@@ -1,82 +1,228 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>AquaTech | Página Inicial</title>
-
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Página Inicial</title>
+    <link rel="stylesheet" href="./pages/CSS/estiloIndex.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
     <script src="./js/sessao.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./pages/CSS/todos.css" />
+  </head>
 
-    <link rel="stylesheet" href="./css/estilo.css">
-    <link rel="icon" href="./assets/icon/favicon2.ico">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-</head>
-
-<body>
-    <div class="header">
-      <div class="container">
-        <h1 class="titulo">AquaTech</h1>
-        <ul class="navbar">
-          <li class="agora">
-            <a href="#">Inicial</a>
-          </li>
-          <li>
-            <a href="simulador.html">Simulador</a>
-          </li>
-          <li>|</li>
-          <li>
-            <a href="login.html">Login</a>
-          </li>
-          <li>
-            <a href="cadastro.html">Cadastro</a>
-          </li>
-        </ul>
+  <body onload="validarSessao()">
+    <div class="cabecalho transparente">
+      <div class="left">
+        <p>Minha Jornada</p>
+      </div>
+      <div class="center">
+        <a href="#principal">Início</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#">Veja a Sua</a>
+      </div>
+      <div class="right">
+        <a id="link-login" href="./pages/login.html">Login</a>
+        <p id="paragrafo-ao-logar" style="display: none">
+          Bem vindo, <span id="nome_usuario"></span>
+        </p>
       </div>
     </div>
-  
-    <div class="banner">
-      <div class="container">
-        <p>Preservando <span>hoje</span> para existirem <span>amanhã</span>.</p>
+
+    <div id="principal" class="principal">
+      <div class="left-prin">
+        <div class="eu">Meu Clube</div>
+        <div class="resumoMeu">
+          <h1>Meu primeiro clube: <span>Thomaz Mazzoni</span></h1>
+          <p>
+            Minha trajetória no Thomaz Mazzoni começou após enfrentar o time em
+            um torneio e, posteriormente, ingressar no clube. Apesar de uma
+            derrota marcante no início, essa experiência serviu como motivação
+            para evolução coletiva da equipe. Ao longo do tempo, desenvolvi
+            minhas habilidades como goleiro, construí amizades importantes e
+            participei de diversas conquistas, tornando esse período uma das
+            fases mais marcantes da minha vida no esporte.
+          </p>
+        </div>
+        <div class="nascimento">
+          <div class="list1">Est. 2012</div>
+          <div class="list2">Goleiro</div>
+        </div>
+      </div>
+      <div class="right-prin">
+        <div class="imagemMinha">
+          <img src="./pages/img/eu3.jpeg" alt="" />
+        </div>
       </div>
     </div>
-  
-    <div class="social">
-      <div class="container">
-        <div class="boxes">
-          <div class="box">
-            <img src="assets/imgs/planet-earth_color.png">
-            <h4>Missão</h4>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, quas cupiditate asperiores provident magnam
-              vitae illum iusto fugiat atque deleniti nulla sed iure suscipit, laborum, aliquid accusantium cum dicta
-              minima.</p>
+
+    <div class="secaoClube">
+      <div class="left-clube">
+        <div class="titulo">
+          <h2 id="sobre">Minha época nesse <span>Clube</span></h2>
+        </div>
+        <div class="sobre-clube">
+          <div class="sobree">
+            <p>Breve.</p>
+            <h3>Resumo do Clube</h3>
+            <p>
+              O Centro Esportivo Thomaz Mazzoni é um dos principais espaços
+              públicos voltados à prática esportiva na cidade de São Paulo,
+              localizado na zona norte. Criado com o objetivo de incentivar o
+              esporte e promover qualidade de vida, o local se tornou referência
+              na formação de atletas e no desenvolvimento de atividades
+              esportivas para pessoas de todas as idades.
+              <br /><br />
+              Ao longo dos anos, o centro esportivo ganhou destaque por seus
+              projetos e equipes, especialmente no futsal, onde muitos jovens
+              tiveram a oportunidade de competir, evoluir e conquistar títulos.
+              Mais do que um espaço físico, o Thomaz Mazzoni representa um
+              ambiente de aprendizado, disciplina e crescimento, marcando a
+              trajetória de diversos atletas que passaram por suas quadras.
+            </p>
           </div>
-          <div class="box">
-            <img src="assets/imgs/lightbulb_color.png">
-            <h4>Visão</h4>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, quas cupiditate asperiores provident magnam
-              vitae illum iusto fugiat atque deleniti nulla sed iure suscipit, laborum, aliquid accusantium cum dicta
-              minima.</p>
+          <div class="resumoClubeMedalhas">
+            <div class="qtdMedalhas">
+              <span>13</span>
+              <p>Total de Medalhas Conquistadas</p>
+            </div>
+            <div class="qtdTrofeus">
+              <span>3</span>
+              <p>Total de Troféus Conquistados</p>
+            </div>
           </div>
-          <div class="box">
-            <img src="assets/imgs/growth_color.png">
-            <h4>Valores</h4>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, quas cupiditate asperiores provident magnam
-              vitae illum iusto fugiat atque deleniti nulla sed iure suscipit, laborum, aliquid accusantium cum dicta
-              minima.</p>
+        </div>
+        <div class="linha-tempo">
+          <div class="box1"></div>
+          <div class="box2"></div>
+          <div class="box3"></div>
+          <div class="box4"></div>
+          <div class="linha-feita"></div>
+          <div class="2012">2012</div>
+          <div class="2015">2015</div>
+          <div class="2018">2018</div>
+          <div class="2020">2020</div>
+        </div>
+        <div class="clubes-passados">
+          <p>Thomaz Mazzoni</p>
+          <p>Juventus</p>
+          <p>Lauzanne</p>
+          <p>Desistência</p>
+        </div>
+      </div>
+      <div class="right-clube">
+        <div class="cabecalho-clube">
+          <p>
+            Das dificuldades dentro e fora de campo, encontrei no futebol a
+            força para evoluir, superar limites e nunca desistir de mim mesmo.
+          </p>
+          <div class="imagem-clube">
+            <img
+              src="https://prefeitura.sp.gov.br/documents/34276/39950386/20260328_CENTRO_OL%C3%8DMPICO_THOMAZ_MAZZONI_0944_JFD.jpg/f902502b-ee80-6399-9eb5-1b35eb9e524c?t=1774725403903"
+              alt=""
+            />
+            <div class="localization">
+              <h4>
+                <i class="fa-solid fa-location-pin"></i> Pr. Pres. Jânio da
+                Silva Quadros, 150 - Vila Maria
+              </h4>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  
-    <div class="footer">
-      <div class="container">
-        <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
-        <span class="version">v1.0.0</span>
+
+    <div class="cards-sobre">
+      <div class="left-card">
+        <div class="nums-usados-camisa">
+          <i class="fa-solid fa-1"></i>
+          Número de Camisa Usada
+        </div>
+        <div class="texto-sobre-card">
+          <p>
+            O número 1 representa a unidade, o princípio, a criação e o primeiro
+            número inteiro positivo.
+          </p>
+        </div>
+      </div>
+      <div class="right-card">
+        <div class="frase-motivacional-cards">
+          <p>
+            "Ser goleiro é ser o último bastião de coragem, transformando a
+            pressão em defesa e o medo em segurança."
+          </p>
+          <p>-- Vozes da minha cabeça, 2026</p>
+        </div>
       </div>
     </div>
-  </body>
 
+    <div class="motivacao">
+      <div class="left-motivacao">
+        <div class="imagens">
+          <img src="https://img.cdndsgni.com/preview/10321711.jpg" alt="" />
+          <img
+            src="https://www.cervejariaguitts.com.br/wp-content/uploads/2020/06/historia-dos-clubes-de-futebol-2.jpg"
+            alt=""
+          />
+        </div>
+      </div>
+      <div class="right-motivacao">
+        <p>FILOSOFIA</p>
+        <h2>A Prática que Constrói <span>Disciplina e Superação</span></h2>
+        <p>
+          O futebol vai muito além de um simples jogo. Ele representa
+          disciplina, superação e aprendizado constante, dentro e fora de campo.
+          Cada treino, cada erro e conquista fazem parte de um processo que
+          ensina sobre persistência e evolução.
+          <br /><br />
+          Como dizia Pelé: “Tudo é prática.” Essa frase reflete a essência do
+          esporte, não existe sucesso sem dedicação diária, esforço contínuo e
+          vontade de melhorar a cada momento.
+        </p>
+      </div>
+    </div>
+
+    <div class="cadastrar">
+      <h1>Pronto para começar sua jornada?</h1>
+      <p>
+        Se cadastre no meu site e insira a quantidade de jogos que você ja jogou
+        sendo federado ou não e a quantide de gols sofridos sendo goleiro.
+      </p>
+      <div class="botoes">
+        <button id="cadastre-se">Cadastre-se</button>
+        <button id="entrar">Entre</button>
+      </div>
+    </div>
+
+    <div class="rodape">
+      <p>
+        Copyright &copy; 2026 | Desenvolvido por
+        <span id="autor"
+          ><a href="https://github.com/LeooM5">Leonardo Moura</a></span
+        >
+      </p>
+    </div>
+
+    <script src="./pages/JS/header.js"></script>
+    <script>
+      document.getElementById("cadastre-se").addEventListener("click", () => {
+        window.location = "./pages/cadastro.html";
+      });
+
+      document.getElementById("entrar").addEventListener("click", () => {
+        window.location = "./pages/login.html";
+      });
+    </script>
+  </body>
 </html>

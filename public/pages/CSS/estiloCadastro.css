@@ -11,8 +11,14 @@ body {
 
 /* HEADER */
 
-.cabecalho a:hover {
-    transform: scale(1.05);
+.cabecalho-container p a {
+    display: inline-block;
+    transition: .3s;
+}
+
+.cabecalho-container p a:hover {
+    transform: scale(.95);
+    opacity: .5;
 }
 
 /* CADASTRO */
@@ -22,7 +28,7 @@ body {
     height: 100%;
     display: flex;
     justify-content: center;
-    margin-top: 5em;
+    margin-top: 3em;
 }
 
 .box {
@@ -43,6 +49,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-clip: border-box;
+    border-radius: 1em 0 0 1em;
 }
 
 .box .right-container {
