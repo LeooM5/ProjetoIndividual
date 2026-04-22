@@ -12,8 +12,6 @@ function validarSessao() {
     b_usuario.innerHTML = `${nome.substring(0, finalDoPrimeiroNome)}!`;
     paragrafo.style.display = "inline-block";
     linkLogin.style.display = "none";
-  } else {
-    window.location = "./pages/login.html";
   }
 }
 

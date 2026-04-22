@@ -12,7 +12,7 @@
 
 body {
     font-family: "Archivo Narrow", sans-serif;
-    background-color: #d0cece90 !important;
+    background-color: #d0cece90;
 }
 
 .cabecalho a {
@@ -95,7 +95,7 @@ body {
 .motivacao,
 .cadastrar,
 .rodape {
-    margin-top: 10em;
+    margin-top: 5em;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -145,7 +145,7 @@ body {
 .imagem-clube img {
     border-radius: .5em;
     height: 30em;
-    width: 30em;
+    width: 40em;
 }
 
 .localization {
@@ -365,7 +365,7 @@ body {
 }
 
 .motivacao .right-motivacao span {
-    color: #77A649;
+    color: #a66026;
 }
 
 .motivacao .left-motivacao .imagens img {

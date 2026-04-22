@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 /* HEADER */
 
 .cabecalho {
@@ -29,8 +33,22 @@
     display: inline-block;
 }
 
+#link-login {
+    background-color: #294e04;
+    padding: .3em 1em;
+    border-radius: .5em;
+    color: white;
+}
+
+#paragrafo-ao-logar {
+    background-color: #294e04;
+    color: white;
+    padding: .3em 1em;
+    border-radius: .5em;
+}
+
 #nome_usuario {
-    color: black;    
+    color: #a66026;
 }
 
 
@@ -66,6 +84,7 @@
 /* RODAPE */
 
 .rodape {
+    margin: 0;
     display: flex;
     justify-content: center;
     height: 5em;
