@@ -20,7 +20,8 @@
       referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="./pages/CSS/todos.css" />
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   </head>
 
   <body onload="validarSessao()">
@@ -41,8 +42,13 @@
       </div>
     </div>
 
-    <div id="principal" class="principal">
-      <div class="left-prin">
+    <div data-aos="zoom-out-up" id="principal" class="principal">
+      <div
+        data-aos="fade-right"
+        data-aos-delay="350"
+        data-aos-duration="800"
+        class="left-prin"
+      >
         <div class="eu">Meu Clube</div>
         <div class="resumoMeu">
           <h1>Meu primeiro clube: <span>Thomaz Mazzoni</span></h1>
@@ -61,15 +67,25 @@
           <div class="list2">Goleiro</div>
         </div>
       </div>
-      <div class="right-prin">
+      <div
+        data-aos="fade-left"
+        data-aos-delay="350"
+        data-aos-duration="800"
+        class="right-prin"
+      >
         <div class="imagemMinha">
           <img src="./pages/img/eu3.jpeg" alt="" />
         </div>
       </div>
     </div>
 
-    <div class="secaoClube">
-      <div class="left-clube">
+    <div data-aos="zoom-out-up" class="secaoClube">
+      <div
+        data-aos="fade-right"
+        data-aos-delay="150"
+        data-aos-duration="800"
+        class="left-clube"
+      >
         <div class="titulo">
           <h2 id="sobre">Minha época nesse <span>Clube</span></h2>
         </div>
@@ -122,7 +138,12 @@
           <p>Desistência</p>
         </div>
       </div>
-      <div class="right-clube">
+      <div
+        data-aos="fade-left"
+        data-aos-delay="200"
+        data-aos-duration="800"
+        class="right-clube"
+      >
         <div class="cabecalho-clube">
           <p>
             Das dificuldades dentro e fora de campo, encontrei no futebol a
@@ -144,8 +165,13 @@
       </div>
     </div>
 
-    <div class="cards-sobre">
-      <div class="left-card">
+    <div data-aos="zoom-out-up" class="cards-sobre">
+      <div
+        data-aos="fade-right"
+        data-aos-delay="150"
+        data-aos-duration="800"
+        class="left-card"
+      >
         <div class="nums-usados-camisa">
           <i class="fa-solid fa-1"></i>
           Número de Camisa Usada
@@ -157,7 +183,12 @@
           </p>
         </div>
       </div>
-      <div class="right-card">
+      <div
+        data-aos="fade-left"
+        data-aos-delay="200"
+        data-aos-duration="800"
+        class="right-card"
+      >
         <div class="frase-motivacional-cards">
           <p>
             "Ser goleiro é ser o último bastião de coragem, transformando a
@@ -168,8 +199,13 @@
       </div>
     </div>
 
-    <div class="motivacao">
-      <div class="left-motivacao">
+    <div data-aos="zoom-out-up" class="motivacao">
+      <div
+        data-aos="fade-right"
+        data-aos-delay="150"
+        data-aos-duration="800"
+        class="left-motivacao"
+      >
         <div class="imagens">
           <img src="https://img.cdndsgni.com/preview/10321711.jpg" alt="" />
           <img
@@ -178,7 +214,12 @@
           />
         </div>
       </div>
-      <div class="right-motivacao">
+      <div
+        data-aos="fade-left"
+        data-aos-delay="200"
+        data-aos-duration="800"
+        class="right-motivacao"
+      >
         <p>FILOSOFIA</p>
         <h2>A Prática que Constrói <span>Disciplina e Superação</span></h2>
         <p>
@@ -194,7 +235,7 @@
       </div>
     </div>
 
-    <div class="cadastrar">
+    <div data-aos="zoom-in" data-aos-delay="100" class="cadastrar">
       <h1>Pronto para começar sua jornada?</h1>
       <p>
         Se cadastre no meu site e insira a quantidade de jogos que você ja jogou
@@ -224,6 +265,10 @@
       document.getElementById("entrar").addEventListener("click", () => {
         window.location = "./pages/login.html";
       });
+    </script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init();
     </script>
   </body>
 </html>

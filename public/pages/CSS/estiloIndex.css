@@ -10,9 +10,15 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: "Archivo Narrow", sans-serif;
     background-color: #d0cece90;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
 .cabecalho a {
