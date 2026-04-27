@@ -2,6 +2,17 @@ html {
     scroll-behavior: smooth;
 }
 
+body {
+    font-family: "Archivo Narrow", sans-serif;
+    background-color: #d0cece90;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+.cabecalho a {
+    display: inline-block;
+}
+
 /* HEADER */
 
 .cabecalho {
@@ -84,11 +95,14 @@ html {
 /* RODAPE */
 
 .rodape {
+    position: relative;
     margin: 0;
     display: flex;
     justify-content: center;
+    align-items: center;
     height: 5em;
     background-color: white;
+    z-index: 2;
 }
 
 .rodape p {

@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="./img/icone.svg" type="image/x-icon" />
+    <link rel="stylesheet" href="./CSS/estiloDash.css" />
+    <link rel="stylesheet" href="./CSS/todos.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/sessao.js"></script>
+    <script src="./js/sessao.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+
+  <body onload="validarSessao()">
+    <div class="cabecalho transparente">
+      <div class="left">
+        <p>Minha Jornada</p>
+      </div>
+      <div class="center">
+        <a href="../index.html#principal">Início</a>
+        <a href="../index.html#sobre">Sobre</a>
+        <a href="./dashboard.html">Veja a Sua</a>
+      </div>
+    </div>
+
+    <div class="left-total">
+      <div class="bem-vindo">
+        <h2>PERFORMANCE</h2>
+        <h6>Bem vindo(a), <span id="nome_usuario"></span></h6>
+      </div>
+
+      <div class="localizacao">
+        <p class="selecionado">
+          <i class="fa-solid fa-chart-bar"></i> Dashboard
+        </p>
+        <p><i class="fa-solid fa-futbol"></i> Histórico de Partida</p>
+        <p><i class="fa-solid fa-dumbbell"></i> Log de treino</p>
+        <p><i class="fa-solid fa-chart-simple"></i> Análise</p>
+      </div>
+    </div>
+
+    <main>
+      <section>
+        <div class="left-section">
+          <div class="boxes">
+            <div class="box box1">
+              <h6>Total de Partidas</h6>
+              <span id="b_partidas">45</span>
+            </div>
+            <div class="box box2">
+              <h6>Gols Sofridos</h6>
+              <span id="b_golSofridos">25</span>
+            </div>
+            <div class="box box3">
+              <h6>Média de Gols Sofridos</h6>
+              <span id="b_mediaGols">0.5</span>
+            </div>
+            <div class="box box4">
+              <h6>Status</h6>
+              <span style="color: #5292e6" id="b_partidas">
+                Ótimo <span class="bolinha-good"></span>
+              </span>
+            </div>
+          </div>
+
+          <div class="grafico-linhas">
+            <h2>Evolução</h2>
+            <canvas id="line"></canvas>
+          </div>
+
+          <div class="box-performance">
+            <div class="pizza">
+              <h2>Distribuição de Partida</h2>
+              <canvas id="pizza"></canvas>
+              <div class="texto-grafico-pizza">
+                <span id="bolinha-federado"></span>
+                <p>Federado</p>
+                <span id="bolinha-Naofederado"></span>
+                <p>Non-Federado</p>
+              </div>
+            </div>
+
+            <div class="linhas-performance">
+              <h2>Performance</h2>
+              <div class="lines">
+                <div class="line1">
+                  <div class="box1-linha">
+                    <p>Saves Ratio</p>
+                    <span style="color: green">88%</span>
+                  </div>
+                  <div class="box-linha">
+                    <span
+                      class="linha-perf"
+                      style="background-color: green"
+                    ></span>
+                  </div>
+                </div>
+                <div class="line2">
+                  <div class="box1-linha">
+                    <p>Clean Sheets</p>
+                    <span style="color: rgb(77, 11, 77)">14 Jogos</span>
+                  </div>
+                  <div class="box-linha">
+                    <span
+                      class="linha-perf"
+                      style="background-color: rgb(77, 11, 77)"
+                    ></span>
+                  </div>
+                </div>
+                <div class="line3">
+                  <div class="box1-linha">
+                    <p>Penalty Saves</p>
+                    <span style="color: rgba(180, 102, 180, 0.519)">4/6</span>
+                  </div>
+                  <div class="box-linha">
+                    <span
+                      class="linha-perf"
+                      style="background-color: rgba(180, 102, 180, 0.519)"
+                    ></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="right-section">
+          <h2><i class="fa-solid fa-circle-plus"></i> Registrar Partida</h2>
+
+          <form action="#">
+            <label for="datePartida">Data da Partida</label>
+            <input type="date" id="datePartida" />
+            <label for="golsPartida">Gols Sofridos</label>
+            <input placeholder="0" type="number" id="golsPartida" />
+            <label for="chutesPartida">Chutes Recebidos</label>
+            <input placeholder="0" type="number" id="chutesPartida" />
+            <label for="typePartida">Tipo de Partida</label>
+            <select id="typePartida">
+              <option value="">Federado</option>
+              <option value="">Non-Federado</option>
+            </select>
+
+            <button type="submit">Registrar Partida</button>
+          </form>
+
+          <div class="tabela-historico">
+            <h1>Histórico de Partidas Recentes</h1>
+            <table>
+              <tr>
+                <th>Data</th>
+                <th>Gols sofridos</th>
+                <th>Tipo</th>
+                <th>Resultados</th>
+              </tr>
+              <tr>
+                <td>24/10/2023</td>
+                <td>2</td>
+                <td>NON-FEDERADO</td>
+                <td>LOSS</td>
+              </tr>
+              <tr>
+                <td>24/10/2023</td>
+                <td>2</td>
+                <td>NON-FEDERADO</td>
+                <td>LOSS</td>
+              </tr>
+              <tr>
+                <td>24/10/2023</td>
+                <td>2</td>
+                <td>NON-FEDERADO</td>
+                <td>LOSS</td>
+              </tr>
+              <tr>
+                <td>24/10/2023</td>
+                <td>2</td>
+                <td>NON-FEDERADO</td>
+                <td>LOSS</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="rodape">
+      <p>
+        Copyright &copy; 2026 | Desenvolvido por
+        <span id="autor"
+          ><a href="https://github.com/LeooM5">Leonardo Moura</a></span
+        >
+      </p>
+    </div>
+  </body>
+</html>
+
+<script>
+  const itensMenu = document.querySelectorAll(".localizacao p");
+
+  itensMenu.forEach((item) => {
+    item.addEventListener("click", () => {
+      itensMenu.forEach((i) => i.classList.remove("selecionado"));
+      item.classList.add("selecionado");
+    });
+  });
+</script>
+<script src="./JS/header.js"></script>
+<script>
+  const ctx = document.getElementById("line");
+  const ctxx = document.getElementById("pizza");
+
+  new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+      datasets: [
+        {
+          label: "# of Votes",
+          data: [12, 19, 3, 5, 2, 3],
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      plugins: {
+        legend: {
+          display: false,
+        },
+      },
+      maintainAspectRatio: false,
+      tension: 0.5,
+      scales: {
+        y: {
+          display: false,
+        },
+      },
+    },
+  });
+
+  new Chart(ctxx, {
+    type: "doughnut",
+    data: {
+      labels: ["Federação", "Não Federação"],
+      datasets: [
+        {
+          label: "Gols Sofridos",
+          data: [12, 19],
+          borderWidth: 0,
+          backgroundColor: ["purple", "aqua"],
+        },
+      ],
+    },
+    options: {
+      plugins: {
+        legend: {
+          display: false,
+        },
+      },
+      maintainAspectRatio: false,
+    },
+  });
+</script>
