@@ -69,9 +69,74 @@
             </div>
             <div class="box box3">
               <h6>Média de Gols Sofridos</h6>
-              <span id="b_mediaGols">0.5</span>
+              <span style="color: #2196f3" id="b_mediaGols">0.5</span>
             </div>
             <div class="box box4">
+              <h6>Métricas</h6>
+              <span
+                style="
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 8px;
+                  font-weight: bold;
+                  font-size: 14px;
+                "
+              >
+                <span
+                  style="
+                    width: 12px;
+                    height: 12px;
+                    border-radius: 50%;
+                    background-color: #ff4d4d;
+                    display: inline-block;
+                  "
+                ></span>
+                Ruim (> 1,5)
+              </span>
+
+              <span
+                style="
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 8px;
+                  font-weight: bold;
+                  font-size: 14px;
+                "
+              >
+                <span
+                  style="
+                    width: 12px;
+                    height: 12px;
+                    border-radius: 50%;
+                    background-color: #4caf50;
+                    display: inline-block;
+                  "
+                ></span>
+                Bom (0,8–1,5)
+              </span>
+
+              <span
+                style="
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 8px;
+                  font-weight: bold;
+                  font-size: 14px;
+                "
+              >
+                <span
+                  style="
+                    width: 12px;
+                    height: 12px;
+                    border-radius: 50%;
+                    background-color: #2196f3;
+                    display: inline-block;
+                  "
+                ></span>
+                Ótimo (< 0,8)
+              </span>
+            </div>
+            <div class="box box5">
               <h6>Status</h6>
               <span style="color: #5292e6" id="b_partidas">
                 Ótimo <span class="bolinha-good"></span>
@@ -107,31 +172,43 @@
                   <div class="box-linha">
                     <span
                       class="linha-perf"
-                      style="background-color: green"
+                      style="
+                        background: linear-gradient(
+                          to right,
+                          green 88%,
+                          #7a787870 12%
+                        );
+                      "
                     ></span>
                   </div>
                 </div>
                 <div class="line2">
                   <div class="box1-linha">
                     <p>Clean Sheets</p>
-                    <span style="color: rgb(77, 11, 77)">14 Jogos</span>
+                    <span style="color: #4d0b4d">14 Jogos</span>
                   </div>
                   <div class="box-linha">
                     <span
                       class="linha-perf"
-                      style="background-color: rgb(77, 11, 77)"
+                      style="background-color: #4d0b4d"
                     ></span>
                   </div>
                 </div>
                 <div class="line3">
                   <div class="box1-linha">
                     <p>Penalty Saves</p>
-                    <span style="color: rgba(180, 102, 180, 0.519)">4/6</span>
+                    <span style="color: #b466b4">4/6</span>
                   </div>
                   <div class="box-linha">
                     <span
                       class="linha-perf"
-                      style="background-color: rgba(180, 102, 180, 0.519)"
+                      style="
+                        background: linear-gradient(
+                          to right,
+                          #b466b4 67%,
+                          rgba(122, 120, 120, 0.438) 33%
+                        );
+                      "
                     ></span>
                   </div>
                 </div>
@@ -143,21 +220,54 @@
         <div class="right-section">
           <h2><i class="fa-solid fa-circle-plus"></i> Registrar Partida</h2>
 
-          <form action="#">
+          <hr style="width: 100%" />
+
+          <form id="partidaRegistrar" action="#">
             <label for="datePartida">Data da Partida</label>
             <input type="date" id="datePartida" />
-            <label for="golsPartida">Gols Sofridos</label>
-            <input placeholder="0" type="number" id="golsPartida" />
-            <label for="chutesPartida">Chutes Recebidos</label>
-            <input placeholder="0" type="number" id="chutesPartida" />
+            <div class="partidaBolas">
+              <div class="box-partidas-bolas">
+                <label for="chutesPartida">Chutes Recebidos</label>
+                <input
+                  min="0"
+                  placeholder="0"
+                  type="number"
+                  id="chutesPartida"
+                />
+              </div>
+              <div class="box-partidas-bolas">
+                <label for="penaltisPartida">Pênaltis Partida</label>
+                <input
+                  min="0"
+                  placeholder="0"
+                  type="number"
+                  id="penaltisPartida"
+                />
+              </div>
+              <div class="box-partidas-bolas">
+                <label for="golsPartida">Gols Sofridos</label>
+                <input min="0" placeholder="0" type="number" id="golsPartida" />
+              </div>
+              <div class="box-partidas-bolas">
+                <label for="penaltisPercebido">Gols Por Pênalti</label>
+                <input
+                  min="0"
+                  placeholder="0"
+                  type="number"
+                  id="penaltisPercebido"
+                />
+              </div>
+            </div>
             <label for="typePartida">Tipo de Partida</label>
             <select id="typePartida">
               <option value="">Federado</option>
               <option value="">Non-Federado</option>
             </select>
 
-            <button type="submit">Registrar Partida</button>
+            <button>Registrar Partida</button>
           </form>
+
+          <hr style="width: 100%" />
 
           <div class="tabela-historico">
             <h1>Histórico de Partidas Recentes</h1>
@@ -209,6 +319,7 @@
   </body>
 </html>
 
+<script src="./JS/header.js"></script>
 <script>
   const itensMenu = document.querySelectorAll(".localizacao p");
 
@@ -219,7 +330,6 @@
     });
   });
 </script>
-<script src="./JS/header.js"></script>
 <script>
   const ctx = document.getElementById("line");
   const ctxx = document.getElementById("pizza");
@@ -274,4 +384,42 @@
       maintainAspectRatio: false,
     },
   });
+</script>
+<script>
+  document
+    .querySelector("#partidaRegistrar")
+    .addEventListener("submit", () => {});
+
+  function registrarPartida() {
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        nomeServer: ipt_name,
+        emailServer: ipt_email,
+        senhaServer: ipt_senha,
+        termosServer: ipt_termosServico,
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          setTimeout(() => {
+            window.location = "./login.html";
+          }, "2000");
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+
+    return false;
+  }
 </script>

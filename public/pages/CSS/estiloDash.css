@@ -181,8 +181,12 @@ main {
     border-radius: 100%;
 }
 
-.box4 {
-    box-shadow: 1px 2px 40px 2px #5292e6;
+.box5 {
+    box-shadow: 1px 1px 10px 1px #2196f3;
+}
+
+.boxes .box4 span {
+    font-size: 1em;
 }
 
 #b_partidas {
@@ -192,7 +196,7 @@ main {
 
 .bolinha-good {
     display: inline-block;
-    background-color: #5292e6;
+    background-color: #2196f3;
     width: .1em;
     height: .1em;
     border-radius: 1em;
@@ -253,7 +257,6 @@ form select,
 form button {
     border-radius: .5em;
     align-self: center;
-    padding-left: 2em;
     height: 3em;
     width: 100%;
     border: 1px solid black;
@@ -262,37 +265,47 @@ form button {
     outline: 0;
 }
 
-form select {
-    width: 108%;
+.partidaBolas .box-partidas-bolas input {
+    padding-left: 1em;
 }
 
 form button {
     cursor: pointer;
     padding-left: 0;
     font-size: 1.5em;
-    width: 108%;
 }
 
 form button:hover {
-    background-color: #ebae44;
+    background-color: #9c6404b9;
+}
+
+.partidaBolas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.box-partidas-bolas {
+    width: 40%;
+    margin-right: 1em;
 }
 
 .tabela-historico {
     display: flex;
     flex-direction: column;
     border-radius: 1em;
-    background-color: #d0cece90;
 }
 
 .tabela-historico h1 {
     font-size: 1.7em;
-    background-color: white;
+    margin-bottom: 1em;
 }
 
 table {
     font-size: .9em;
     border-collapse: collapse;
     text-align: center;
+    border: 1px solid black;
 }
 
 table tr {
