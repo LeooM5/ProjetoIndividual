@@ -116,7 +116,7 @@
       }
     }
 
-    if (ipt_email.includes("@")) {
+    if (ipt_email.includes("@") && ipt_email.endsWith(".com")) {
       if (ipt_senha.length >= 6) {
         if (temMaius) {
           if (criterioEspecial >= 1) {
