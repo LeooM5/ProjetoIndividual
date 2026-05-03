@@ -7,13 +7,11 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <link rel="shortcut icon" href="./img/icone.svg" type="image/x-icon" />
-    <link rel="stylesheet" href="./CSS/estiloDash.css" />
     <link rel="stylesheet" href="./CSS/todos.css" />
+    <link rel="stylesheet" href="./CSS/estiloDash.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../js/sessao.js"></script>
-    <script src="./js/sessao.js"></script>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap"
       rel="stylesheet"
@@ -27,7 +25,7 @@
     />
   </head>
 
-  <body onload="validarSessao()">
+  <body onload="iniciarDashboard()">
     <div class="cabecalho transparente">
       <div class="left">
         <p>Minha Jornada</p>
@@ -46,11 +44,8 @@
       </div>
 
       <div class="localizacao">
-        <p class="selecionado">
-          <i class="fa-solid fa-chart-bar"></i> Dashboard
-        </p>
+        <p><i class="fa-solid fa-chart-bar"></i> Dashboard</p>
         <p><i class="fa-solid fa-futbol"></i> Histórico de Partida</p>
-        <p><i class="fa-solid fa-dumbbell"></i> Log de treino</p>
         <p><i class="fa-solid fa-chart-simple"></i> Análise</p>
       </div>
     </div>
@@ -64,11 +59,13 @@
               <span id="b_partidas">45</span>
             </div>
             <div class="box box2">
-              <h6>Gols Sofridos</h6>
+              <h6>Gols Totais Sofridos</h6>
               <span id="b_golSofridos">25</span>
             </div>
             <div class="box box3">
-              <h6>Média de Gols Sofridos</h6>
+              <h6 style="font-size: 1.2em">
+                Média de Gols Levados por Partida
+              </h6>
               <span style="color: #2196f3" id="b_mediaGols">0.5</span>
             </div>
             <div class="box box4">
@@ -136,16 +133,16 @@
                 Ótimo (< 0,8)
               </span>
             </div>
-            <div class="box box5">
+            <div id="box5" class="box box5">
               <h6>Status</h6>
-              <span style="color: #5292e6" id="b_partidas">
+              <span style="color: #5292e6" id="b_status">
                 Ótimo <span class="bolinha-good"></span>
               </span>
             </div>
           </div>
 
           <div class="grafico-linhas">
-            <h2>Evolução</h2>
+            <h2>Trajetória</h2>
             <canvas id="line"></canvas>
           </div>
 
@@ -157,61 +154,7 @@
                 <span id="bolinha-federado"></span>
                 <p>Federado</p>
                 <span id="bolinha-Naofederado"></span>
-                <p>Non-Federado</p>
-              </div>
-            </div>
-
-            <div class="linhas-performance">
-              <h2>Performance</h2>
-              <div class="lines">
-                <div class="line1">
-                  <div class="box1-linha">
-                    <p>Saves Ratio</p>
-                    <span style="color: green">88%</span>
-                  </div>
-                  <div class="box-linha">
-                    <span
-                      class="linha-perf"
-                      style="
-                        background: linear-gradient(
-                          to right,
-                          green 88%,
-                          #7a787870 12%
-                        );
-                      "
-                    ></span>
-                  </div>
-                </div>
-                <div class="line2">
-                  <div class="box1-linha">
-                    <p>Clean Sheets</p>
-                    <span style="color: #4d0b4d">14 Jogos</span>
-                  </div>
-                  <div class="box-linha">
-                    <span
-                      class="linha-perf"
-                      style="background-color: #4d0b4d"
-                    ></span>
-                  </div>
-                </div>
-                <div class="line3">
-                  <div class="box1-linha">
-                    <p>Penalty Saves</p>
-                    <span style="color: #b466b4">4/6</span>
-                  </div>
-                  <div class="box-linha">
-                    <span
-                      class="linha-perf"
-                      style="
-                        background: linear-gradient(
-                          to right,
-                          #b466b4 67%,
-                          rgba(122, 120, 120, 0.438) 33%
-                        );
-                      "
-                    ></span>
-                  </div>
-                </div>
+                <p>Não Federado</p>
               </div>
             </div>
           </div>
@@ -222,7 +165,7 @@
 
           <hr style="width: 100%" />
 
-          <form id="partidaRegistrar" action="#">
+          <form id="partidaRegistrar" onsubmit="return registrarPartida();">
             <label for="datePartida">Data da Partida</label>
             <input type="date" id="datePartida" />
             <div class="partidaBolas">
@@ -245,7 +188,7 @@
                 />
               </div>
               <div class="box-partidas-bolas">
-                <label for="golsPartida">Gols Sofridos</label>
+                <label for="golsPartida">Gols Totais Sofridos</label>
                 <input min="0" placeholder="0" type="number" id="golsPartida" />
               </div>
               <div class="box-partidas-bolas">
@@ -260,8 +203,8 @@
             </div>
             <label for="typePartida">Tipo de Partida</label>
             <select id="typePartida">
-              <option value="">Federado</option>
-              <option value="">Non-Federado</option>
+              <option>Federado</option>
+              <option>Não Federado</option>
             </select>
 
             <button>Registrar Partida</button>
@@ -272,36 +215,15 @@
           <div class="tabela-historico">
             <h1>Histórico de Partidas Recentes</h1>
             <table>
-              <tr>
-                <th>Data</th>
-                <th>Gols sofridos</th>
-                <th>Tipo</th>
-                <th>Resultados</th>
-              </tr>
-              <tr>
-                <td>24/10/2023</td>
-                <td>2</td>
-                <td>NON-FEDERADO</td>
-                <td>LOSS</td>
-              </tr>
-              <tr>
-                <td>24/10/2023</td>
-                <td>2</td>
-                <td>NON-FEDERADO</td>
-                <td>LOSS</td>
-              </tr>
-              <tr>
-                <td>24/10/2023</td>
-                <td>2</td>
-                <td>NON-FEDERADO</td>
-                <td>LOSS</td>
-              </tr>
-              <tr>
-                <td>24/10/2023</td>
-                <td>2</td>
-                <td>NON-FEDERADO</td>
-                <td>LOSS</td>
-              </tr>
+              <thead>
+                <tr>
+                  <th>Data</th>
+                  <th>Gols sofridos</th>
+                  <th>Tipo</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="tbodyHistorico"></tbody>
             </table>
           </div>
         </div>
@@ -321,105 +243,179 @@
 
 <script src="./JS/header.js"></script>
 <script>
-  const itensMenu = document.querySelectorAll(".localizacao p");
+  let graficoLinha;
+  let graficoPizza;
 
-  itensMenu.forEach((item) => {
-    item.addEventListener("click", () => {
-      itensMenu.forEach((i) => i.classList.remove("selecionado"));
-      item.classList.add("selecionado");
-    });
-  });
-</script>
-<script>
-  const ctx = document.getElementById("line");
-  const ctxx = document.getElementById("pizza");
-
-  new Chart(ctx, {
-    type: "line",
-    data: {
-      labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-      datasets: [
-        {
-          label: "# of Votes",
-          data: [12, 19, 3, 5, 2, 3],
-          borderWidth: 1,
-        },
-      ],
-    },
-    options: {
-      plugins: {
-        legend: {
-          display: false,
-        },
-      },
-      maintainAspectRatio: false,
-      tension: 0.5,
-      scales: {
-        y: {
-          display: false,
-        },
-      },
-    },
-  });
-
-  new Chart(ctxx, {
-    type: "doughnut",
-    data: {
-      labels: ["Federação", "Não Federação"],
-      datasets: [
-        {
-          label: "Gols Sofridos",
-          data: [12, 19],
-          borderWidth: 0,
-          backgroundColor: ["purple", "aqua"],
-        },
-      ],
-    },
-    options: {
-      plugins: {
-        legend: {
-          display: false,
-        },
-      },
-      maintainAspectRatio: false,
-    },
-  });
-</script>
-<script>
-  document
-    .querySelector("#partidaRegistrar")
-    .addEventListener("submit", () => {});
+  function iniciarDashboard() {
+    validarSessaoDash();
+    carregarGraficos();
+  }
 
   function registrarPartida() {
-    fetch("/usuarios/cadastrar", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
-        nomeServer: ipt_name,
-        emailServer: ipt_email,
-        senhaServer: ipt_senha,
-        termosServer: ipt_termosServico,
-      }),
-    })
-      .then(function (resposta) {
-        console.log("resposta: ", resposta);
-
-        if (resposta.ok) {
-          setTimeout(() => {
-            window.location = "./login.html";
-          }, "2000");
-        } else {
-          throw "Houve um erro ao tentar realizar o cadastro!";
-        }
+    if (
+      datePartida.value != "" &&
+      chutesPartida.value != "" &&
+      penaltisPartida.value != "" &&
+      golsPartida.value != "" &&
+      penaltisPercebido.value != "" &&
+      typePartida.value != ""
+    ) {
+      fetch("/partidas/registrar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          dataServer: datePartida.value,
+          chutesServer: chutesPartida.value,
+          penaltisServer: penaltisPartida.value,
+          golsServer: golsPartida.value,
+          golsPenaltiServer: penaltisPercebido.value,
+          tipoServer: typePartida.value,
+          usuarioServer: sessionStorage.ID_USUARIO,
+        }),
       })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-      });
+        .then((resposta) => {
+          if (resposta.ok) {
+            location.reload();
+          }
+        })
+        .catch((erro) => console.log(erro));
 
-    return false;
+      return false;
+    }
+    alert("Insira dados válidos");
+  }
+
+  function carregarGraficos() {
+    const idUsuario = sessionStorage.ID_USUARIO;
+
+    fetch(`/partidas/dashboard/${idUsuario}`)
+      .then((res) => res.json())
+      .then((dados) => {
+        atualizarCards(dados);
+        plotarGraficos(dados);
+        preencherTabela(dados);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  function atualizarCards(dados) {
+    const totalPartidas = dados.length;
+
+    const totalGols = dados.reduce((acc, item) => acc + item.golsSofridos, 0);
+
+    const media =
+      totalPartidas > 0 ? (totalGols / totalPartidas).toFixed(2) : 0;
+
+    document.getElementById("b_partidas").innerText = totalPartidas;
+    document.getElementById("b_golSofridos").innerText = totalGols;
+    document.getElementById("b_mediaGols").innerText = media;
+
+    let cor = "#2196f3";
+    let status = `Ótimo`;
+    let estado = `excelent`;
+
+    if (media > 1.5) {
+      estado = `bad`;
+      status = `Ruim`;
+      cor = "#ff4d4d";
+    } else if (media >= 0.8) {
+      estado = `good`;
+      status = `Bom`;
+      cor = "#4caf50";
+    }
+
+    document.getElementById("b_mediaGols").style.color = cor;
+
+    document.getElementById("b_status").style.color = cor;
+    document.getElementById("box5").style.boxShadow = `0 8px 28px ${cor}`;
+
+    document.getElementById("b_status").innerHTML =
+      `${status} <span class="bolinha-${estado}"></span>`;
+  }
+
+  function plotarGraficos(dados) {
+    const labels = dados.map((d) =>
+      new Date(d.dataPartida).toLocaleDateString("pt-BR"),
+    );
+
+    const gols = dados.map((d) => d.golsSofridos);
+
+    const federado = dados.filter((d) => d.tipoPartida === "Federado").length;
+
+    const naoFederado = dados.filter(
+      (d) => d.tipoPartida === "Não Federado",
+    ).length;
+
+    graficoLinha = new Chart(document.getElementById("line"), {
+      type: "line",
+      data: {
+        labels,
+        datasets: [
+          {
+            label: "Gols Sofridos",
+            data: gols,
+            borderWidth: 2,
+            tension: 0.5,
+          },
+        ],
+      },
+      options: {
+        plugins: {
+          legend: { display: false },
+        },
+        maintainAspectRatio: false,
+      },
+    });
+
+    graficoPizza = new Chart(document.getElementById("pizza"), {
+      type: "doughnut",
+      data: {
+        labels: ["Federado", "Não Federado"],
+        datasets: [
+          {
+            data: [federado, naoFederado],
+            borderWidth: 0,
+            backgroundColor: ["purple", "aqua"],
+          },
+        ],
+      },
+      options: {
+        plugins: {
+          legend: { display: false },
+        },
+        maintainAspectRatio: false,
+      },
+    });
+  }
+
+  function preencherTabela(dados) {
+    const tbody = document.getElementById("tbodyHistorico");
+
+    tbody.innerHTML = "";
+
+    const ordenados = [...dados]
+      .sort((a, b) => new Date(b.dataPartida) - new Date(a.dataPartida))
+      .slice(0, 5);
+
+    ordenados.forEach((partida) => {
+      let status = "ÓTIMO";
+
+      if (partida.golsSofridos >= 2) {
+        status = "RUIM";
+      } else if (partida.golsSofridos >= 1) {
+        status = "BOM";
+      }
+
+      tbody.innerHTML += `
+      <tr>
+        <td>${new Date(partida.dataPartida).toLocaleDateString("pt-BR")}</td>
+        <td>${partida.golsSofridos}</td>
+        <td>${partida.tipoPartida}</td>
+        <td>${status}</td>
+      </tr>
+    `;
+    });
   }
 </script>

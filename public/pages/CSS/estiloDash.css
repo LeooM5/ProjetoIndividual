@@ -3,10 +3,6 @@
     padding: 0;
 }
 
-.cabecalho.transparente {
-    background-color: white !important;
-}
-
 /*  */
 
 .left-total {
@@ -16,12 +12,19 @@
     top: 0;
     height: 100%;
     width: 15em;
-    background-color: white;
+    background-color: var(--superficie);
+    box-shadow: var(--sombra-card);
+    border-right: 1px solid var(--borda);
 }
 
 .bem-vindo {
     margin-top: 1em;
     margin-left: 1em;
+}
+
+.bem-vindo #nome_usuario {
+    color: #c2410c;
+    font-weight: 700;
 }
 
 .left-total h6 {
@@ -40,12 +43,7 @@
 }
 
 .left-total p:hover {
-    background-color: #9c6404b9;
-}
-
-.left-total p.selecionado {
-    background-color: #9c6404b9;
-    border-right: .3em solid #ebae44;
+    background-color: var(--destaque-leve);
 }
 
 .localizacao p i {
@@ -79,52 +77,17 @@ main {
     width: 100%;
 }
 
-.linhas-performance {
-    width: 22em;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    background-color: white;
-    padding: 1em;
-    border-radius: 1em;
-}
-
-.lines {
-    display: flex;
-    flex-direction: column;
-    margin-top: 5em;
-}
-
-.linha-perf {
-    display: inline-block;
-    width: 20em;
-    height: .7em;
-    border-radius: 1em;
-}
-
-.line1,
-.line2,
-.line3 {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.line1 p,
-.line2 p,
-.line3 p {
-    width: 80%;
-}
-
 .box {
     display: flex;
     justify-content: space-around;
     flex-direction: column;
     width: 10em;
     height: 10em;
-    background-color: white;
+    background-color: var(--superficie);
     border-radius: 1em;
     padding: .5em 1em;
+    box-shadow: var(--sombra-card);
+    border: 1px solid rgba(249, 115, 22, 0.1);
 }
 
 .box1-linha {
@@ -151,9 +114,11 @@ main {
 .grafico-linhas {
     width: 100%;
     height: 20em;
-    background-color: white;
+    background-color: var(--superficie);
     border-radius: 1em;
     padding: 3em 0;
+    box-shadow: var(--sombra-card-forte);
+    border: 1px solid rgba(249, 115, 22, 0.12);
 }
 
 .grafico-linhas h2 {
@@ -163,17 +128,18 @@ main {
 .pizza {
     display: flex;
     flex-direction: column;
-    width: 30em;
+    width: 100%;
     height: 25em;
     align-items: center;
     justify-content: space-between;
-    background-color: white;
+    background-color: var(--superficie);
     border-radius: 1em;
     padding: 1em;
+    box-shadow: var(--sombra-card);
+    border: 1px solid rgba(249, 115, 22, 0.12);
 }
 
-#bolinha-federado,
-#bolinha-Naofederado {
+#bolinha-federado {
     display: inline-block;
     width: .7em;
     height: .7em;
@@ -181,8 +147,12 @@ main {
     border-radius: 100%;
 }
 
-.box5 {
-    box-shadow: 1px 1px 10px 1px #2196f3;
+#bolinha-Naofederado {
+    display: inline-block;
+    width: .7em;
+    height: .7em;
+    background-color: aqua;
+    border-radius: 100%;
 }
 
 .boxes .box4 span {
@@ -194,17 +164,30 @@ main {
     align-items: center;
 }
 
-.bolinha-good {
+.bolinha-good,
+.bolinha-bad,
+.bolinha-excelent {
     display: inline-block;
-    background-color: #2196f3;
+    background-color: green;
     width: .1em;
     height: .1em;
     border-radius: 1em;
     margin-left: .1em;
 }
 
-#bolinha-Naofederado {
-    background-color: aqua;
+.bolinha-bad {
+    background-color: red;
+
+}
+
+.bolinha-excelent {
+    background-color: #2196f3;
+
+}
+
+#b_status {
+    display: flex;
+    align-items: center;
 }
 
 .pizza h2 {
@@ -235,9 +218,11 @@ canvas#line {
     align-items: center;
     justify-content: space-around;
     height: 55em;
-    background-color: white;
+    background-color: var(--superficie);
     border-radius: 1em;
     padding: 2em;
+    box-shadow: var(--sombra-card-forte);
+    border: 1px solid rgba(249, 115, 22, 0.14);
 }
 
 .right-section h2 {
@@ -276,7 +261,7 @@ form button {
 }
 
 form button:hover {
-    background-color: #9c6404b9;
+    background-color: var(--destaque-leve);
 }
 
 .partidaBolas {
@@ -299,6 +284,7 @@ form button:hover {
 .tabela-historico h1 {
     font-size: 1.7em;
     margin-bottom: 1em;
+
 }
 
 table {
@@ -318,7 +304,8 @@ table td {
 }
 
 table tr:nth-child(1) {
-    background-color: #9c6404b9;
+    background-color: var(--botao-escuro);
+    color: var(--superficie);
 }
 
 

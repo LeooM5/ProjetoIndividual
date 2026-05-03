@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cadastro</title>
+    <link rel="stylesheet" href="./CSS/todos.css" />
     <link rel="stylesheet" href="./CSS/estiloCadastro.css" />
     <link
       rel="stylesheet"
@@ -139,9 +140,7 @@
                   console.log("resposta: ", resposta);
 
                   if (resposta.ok) {
-                    setTimeout(() => {
-                      window.location = "./login.html";
-                    }, "2000");
+                    window.location = "./login.html";
                   } else {
                     throw "Houve um erro ao tentar realizar o cadastro!";
                   }

@@ -40,7 +40,7 @@
 }
 
 .principal .left-prin span {
-    color: #a66026;
+    color: #c2410c;
 }
 
 .right-prin img {
@@ -60,7 +60,7 @@
 }
 
 .nascimento div {
-    color: #2f4b1b;
+    color: var(--cor-texto);
     font-size: 1em;
     list-style: none;
     padding: .3em .8em;
@@ -76,8 +76,7 @@
 
 .nascimento .list1,
 .nascimento .list2 {
-    background-color: #b7f28d8d;
-
+    background-color: var(--destaque-leve);
 }
 
 /* CLUBE */
@@ -97,7 +96,7 @@
 }
 
 .titulo h2 span {
-    color: #a66026;
+    color: #c2410c;
 }
 
 .right-clube {
@@ -183,10 +182,11 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: white;
+    background-color: var(--superficie);
     padding: .5em;
     border-radius: .5em;
     width: 40%;
+    border: 1px solid rgba(249, 115, 22, 0.12);
 }
 
 .qtdMedalhas span,
@@ -195,10 +195,10 @@
     border-radius: 50%;
     padding: .5em .8em;
     align-items: center;
-    color: #2f4b1b;
+    color: var(--cor-texto);
     font-weight: bold;
     font-size: 1em;
-    background-color: #b7f28d8d;
+    background-color: var(--destaque-leve);
     margin-right: 1em;
 
 }
@@ -272,11 +272,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #477915;
+    background-color: var(--botao-escuro);
     border-radius: .5em;
-    color: white;
+    color: var(--superficie);
     height: 15em;
     text-align: center;
+    box-shadow: var(--sombra-card-forte);
+    border: 1px solid rgba(249, 115, 22, 0.25);
 }
 
 .nums-usados-camisa {
@@ -295,22 +297,22 @@
 
 .cards-sobre .left-card i {
     padding: .5em 1em;
-    color: black;
+    color: #c2410c;
     display: flex;
     justify-content: center;
-    background-color: white;
+    background-color: var(--superficie);
     border-radius: 50%;
 }
 
 .cards-sobre .right-card {
     width: 40%;
-    background-color: #e2dc8a66;
+    background-color: var(--destaque-suave);
     padding: 1em;
     height: 15em;
     border-radius: .5em;
     display: flex;
     align-items: center;
-    border-left: .4em solid rgba(0, 0, 0, 0.646);
+    border-left: .4em solid #c2410c;
 }
 
 .frase-motivacional-cards {
@@ -356,7 +358,7 @@
 }
 
 .motivacao .right-motivacao span {
-    color: #a66026;
+    color: #c2410c;
 }
 
 .motivacao .left-motivacao .imagens img {
@@ -377,7 +379,7 @@
     margin: 5em .5em;
     padding: 0 .5em;
     height: 20em;
-    background-color: #bcdc9d97;
+    background-color: var(--destaque-suave);
     border-radius: .5em;
 }
 
@@ -396,8 +398,8 @@
     width: 7em;
     height: 2.5em;
     border: 0;
-    background-color: #477915;
-    color: white;
+    background-color: var(--botao-escuro);
+    color: var(--superficie);
     border-radius: .5em;
     cursor: pointer;
     transition: .3s;
@@ -409,12 +411,14 @@
 }
 
 .cadastrar .botoes button:nth-child(2) {
-    background-color: white;
-    color: black;
+    background-color: var(--superficie);
+    color: var(--cor-texto);
+    border: 1px solid var(--borda);
 }
 
 /* EXTRA */
 
-.carousel-control-prev,.carousel-control-next {
+.carousel-control-prev,
+.carousel-control-next {
     z-index: 2 !important;
 }

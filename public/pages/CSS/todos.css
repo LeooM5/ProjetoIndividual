@@ -1,10 +1,28 @@
+:root {
+    --fundo: #faf3ee;
+    --fundo-corpo: linear-gradient(165deg, #fff8f0 0%, #ffe8d6 28%, #faf3ee 55%, #f0ebe6 100%);
+    --superficie: #ffffff;
+    --cor-texto: #171717;
+    --destaque-forte: #ea580c;
+    --destaque-escuro: #c2410c;
+    --destaque-suave: #ffedd5;
+    --destaque-leve: rgba(249, 115, 22, 0.32);
+    --botao-escuro: #0f0f0f;
+    --borda: #e7e5e4;
+    --fundo-topo: #141414;
+    --texto-topo: #fafaf9;
+}
+
 html {
     scroll-behavior: smooth;
 }
 
 body {
     font-family: "Archivo Narrow", sans-serif;
-    background-color: #d0cece90;
+    background-color: var(--fundo);
+    background-image: var(--fundo-corpo);
+    background-attachment: fixed;
+    color: var(--cor-texto);
     overflow-x: hidden;
     scroll-behavior: smooth;
 }
@@ -20,23 +38,25 @@ body {
     justify-content: space-between;
     align-items: center;
     height: 4em;
-    background-color: white;
+    background-color: var(--fundo-topo);
     position: fixed;
     top: 0;
     width: 100%;
-    transition: .3s;
     z-index: 99;
 }
 
 .cabecalho.transparente {
-    background-color: transparent;
+    background: linear-gradient(180deg, rgba(20, 20, 20, 0.97) 0%, rgba(20, 20, 20, 0.82) 100%);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .cabecalho a,
-#paragrafo-ao-logar {
+#paragrafo-ao-logar,
+#sair {
     text-decoration: none;
     font-size: 1.4em;
-    color: #77A649;
+    color: var(--texto-topo);
     font-weight: bold;
     transition: .5s;
     border-bottom: .1em solid transparent;
@@ -44,34 +64,54 @@ body {
     display: inline-block;
 }
 
+.cabecalho a:hover {
+    color: #c2410c;
+    transform: scale(1.05);
+    opacity: 1;
+}
+
 #link-login {
-    background-color: #294e04;
-    padding: .3em 1em;
+    padding: .35em 1.15em;
     border-radius: .5em;
-    color: white;
+    color: var(--superficie);
+    background-color: #c2410c;
+}
+
+#sair {
+    background-color: rgba(249, 115, 22, 0.95);
+    margin: 0 1em;
+    border-radius: .5em;
+    padding: 0 1em;
+    border: 0;
+    cursor: pointer;
+}
+
+#sair:hover {
+    transform: scale(1.05);
+}
+
+#link-login:hover {
+    background-color: var(--destaque-forte);
+    filter: brightness(1.05);
 }
 
 #paragrafo-ao-logar {
-    background-color: #294e04;
-    color: white;
-    padding: .3em 1em;
+    background-color: rgba(249, 115, 22, 0.95);
+    color: var(--superficie);
+    padding: .35em 1em;
     border-radius: .5em;
+    box-shadow: 0 4px 14px rgba(249, 115, 22, 0.4);
 }
 
-#nome_usuario {
-    color: #a66026;
-}
-
-
-.cabecalho a:hover {
-    transform: scale(1.05);
-    opacity: .8;
+#paragrafo-ao-logar #nome_usuario {
+    color: black;
 }
 
 .cabecalho .left p {
     font-size: 2em;
-    color: #77A649;
+    color: var(--texto-topo);
     font-weight: bold;
+    text-shadow: 0 2px 12px rgba(249, 115, 22, 0.35);
 }
 
 .cabecalho .center {
@@ -90,8 +130,6 @@ body {
     justify-content: center;
 }
 
-/* FOOTER */
-
 /* RODAPE */
 
 .rodape {
@@ -101,7 +139,8 @@ body {
     justify-content: center;
     align-items: center;
     height: 5em;
-    background-color: white;
+    background-color: var(--fundo-topo);
+    color: var(--texto-topo);
     z-index: 2;
 }
 
@@ -110,14 +149,16 @@ body {
 }
 
 .rodape span a {
-    color: #a66026;
+    color: #c2410c;
     cursor: pointer;
     text-decoration: none;
     display: inline-block;
     transition: .3s;
+    font-weight: 600;
 }
 
 .rodape span a:hover {
     transform: scale(.95);
-    opacity: .5;
+    color: #fdba74;
+    opacity: 1;
 }

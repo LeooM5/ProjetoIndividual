@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Página Inicial</title>
+    <link rel="stylesheet" href="./pages/CSS/todos.css" />
     <link rel="stylesheet" href="./pages/CSS/estiloIndex.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <script src="./js/sessao.js"></script>
@@ -19,7 +20,6 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="./pages/CSS/todos.css" />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link
@@ -44,6 +44,9 @@
         <p id="paragrafo-ao-logar" style="display: none">
           Bem vindo(a), <span id="nome_usuario"></span>
         </p>
+        <button style="display: none" onclick="limparSessao()" id="sair">
+          Sair
+        </button>
       </div>
     </div>
 
