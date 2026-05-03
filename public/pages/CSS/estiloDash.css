@@ -303,7 +303,7 @@ table td {
     padding: .5em;
 }
 
-table tr:nth-child(1) {
+table thead tr:nth-child(1) {
     background-color: var(--botao-escuro);
     color: var(--superficie);
 }
