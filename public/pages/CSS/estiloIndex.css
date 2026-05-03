@@ -272,12 +272,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: var(--botao-escuro);
+    background-color: var(--destaque-suave);
     border-radius: .5em;
-    color: var(--superficie);
+    color: black;
     height: 15em;
     text-align: center;
-    box-shadow: var(--sombra-card-forte);
     border: 1px solid rgba(249, 115, 22, 0.25);
 }
 

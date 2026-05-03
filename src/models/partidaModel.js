@@ -49,13 +49,13 @@ function buscarDashboard(idUsuario) {
   var instrucaoSql = `
     SELECT
       p.dataPartida,
+      p.tipoPartida,
       e.golsSofridos,
-      p.tipoPartida
+      e.chutesRecebidos
     FROM estatistica e
     JOIN partida p
       ON e.fkPartida = p.idPartida
-    WHERE e.fkUsuario = ${idUsuario}
-    ORDER BY p.dataPartida;
+    WHERE e.fkUsuario = ${idUsuario};
   `;
 
   return database.executar(instrucaoSql);

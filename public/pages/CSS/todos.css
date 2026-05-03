@@ -43,12 +43,12 @@ body {
     top: 0;
     width: 100%;
     z-index: 99;
+    transition: .3s;
 }
 
 .cabecalho.transparente {
-    background: linear-gradient(180deg, rgba(20, 20, 20, 0.97) 0%, rgba(20, 20, 20, 0.82) 100%);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: transparent;
+    color: black;
 }
 
 .cabecalho a,

@@ -56,20 +56,23 @@
           <div class="boxes">
             <div class="box box1">
               <h6>Total de Partidas</h6>
-              <span id="b_partidas">45</span>
+              <span id="b_partidas"></span>
             </div>
             <div class="box box2">
               <h6>Gols Totais Sofridos</h6>
-              <span id="b_golSofridos">25</span>
+              <span id="b_golSofridos"></span>
             </div>
             <div class="box box3">
-              <h6 style="font-size: 1.2em">
-                Média de Gols Levados por Partida
-              </h6>
-              <span style="color: #2196f3" id="b_mediaGols">0.5</span>
+              <h6>Chutes Totais Recebidos</h6>
+              <span id="b_chutesTotais"></span>
             </div>
             <div class="box box4">
+              <h6>Porcentagem de Defesa</h6>
+              <span style="color: #2196f3" id="b_porcentagemDefesa"></span>
+            </div>
+            <div class="box box6">
               <h6>Métricas</h6>
+
               <span
                 style="
                   display: inline-flex;
@@ -84,11 +87,11 @@
                     width: 12px;
                     height: 12px;
                     border-radius: 50%;
-                    background-color: #ff4d4d;
+                    background-color: #2196f3;
                     display: inline-block;
                   "
                 ></span>
-                Ruim (> 1,5)
+                Ótimo (>95)
               </span>
 
               <span
@@ -109,7 +112,7 @@
                     display: inline-block;
                   "
                 ></span>
-                Bom (0,8–1,5)
+                Bom (80-95%)
               </span>
 
               <span
@@ -126,13 +129,14 @@
                     width: 12px;
                     height: 12px;
                     border-radius: 50%;
-                    background-color: #2196f3;
+                    background-color: #ff4d4d;
                     display: inline-block;
                   "
                 ></span>
-                Ótimo (< 0,8)
+                Ruim (< 80%)
               </span>
             </div>
+
             <div id="box5" class="box box5">
               <h6>Status</h6>
               <span style="color: #5292e6" id="b_status">
@@ -142,7 +146,7 @@
           </div>
 
           <div class="grafico-linhas">
-            <h2>Gols Por Partida</h2>
+            <h2>Histórico de Partidas</h2>
             <canvas id="line"></canvas>
           </div>
 
@@ -157,6 +161,10 @@
                 <p>Não Federado</p>
               </div>
             </div>
+            <div class="grafico-defesas">
+              <h2>Defesas por Partida</h2>
+              <canvas id="barDefesas"></canvas>
+            </div>
           </div>
         </div>
 
@@ -170,7 +178,9 @@
             <input type="date" id="datePartida" />
             <div class="partidaBolas">
               <div class="box-partidas-bolas">
-                <label style="font-size: .9em;" for="chutesPartida">Chutes Totais Recebidos</label>
+                <label style="font-size: 0.9em" for="chutesPartida"
+                  >Chutes Recebidos</label
+                >
                 <input
                   min="0"
                   placeholder="0"
@@ -188,7 +198,7 @@
                 />
               </div>
               <div class="box-partidas-bolas">
-                <label for="golsPartida">Gols Totais Sofridos</label>
+                <label for="golsPartida">Gols Sofridos</label>
                 <input min="0" placeholder="0" type="number" id="golsPartida" />
               </div>
               <div class="box-partidas-bolas">
@@ -245,6 +255,7 @@
 <script>
   let graficoLinha;
   let graficoPizza;
+  let graficoDefesas;
 
   function iniciarDashboard() {
     validarSessaoDash();
@@ -303,30 +314,37 @@
   function atualizarCards(dados) {
     const totalPartidas = dados.length;
 
+    const totalChutes = dados.reduce(
+      (acc, item) => acc + item.chutesRecebidos,
+      0,
+    );
     const totalGols = dados.reduce((acc, item) => acc + item.golsSofridos, 0);
 
-    const media =
-      totalPartidas > 0 ? (totalGols / totalPartidas).toFixed(2) : 0;
+    const savesRatio =
+      totalChutes > 0
+        ? (((totalChutes - totalGols) / totalChutes) * 100).toFixed(1)
+        : 0;
 
     document.getElementById("b_partidas").innerText = totalPartidas;
+    document.getElementById("b_chutesTotais").innerText = totalChutes;
     document.getElementById("b_golSofridos").innerText = totalGols;
-    document.getElementById("b_mediaGols").innerText = media;
+    document.getElementById("b_porcentagemDefesa").innerText = `${savesRatio}%`;
 
     let cor = "#2196f3";
     let status = `Ótimo`;
     let estado = `excelent`;
 
-    if (media > 1.5) {
+    if (savesRatio < 80) {
       estado = `bad`;
       status = `Ruim`;
       cor = "#ff4d4d";
-    } else if (media >= 0.8) {
+    } else if (savesRatio <= 95) {
       estado = `good`;
       status = `Bom`;
       cor = "#4caf50";
     }
 
-    document.getElementById("b_mediaGols").style.color = cor;
+    document.getElementById("b_porcentagemDefesa").style.color = cor;
 
     document.getElementById("b_status").style.color = cor;
     document.getElementById("box5").style.boxShadow = `0 8px 28px ${cor}`;
@@ -341,6 +359,7 @@
     );
 
     const gols = dados.map((d) => d.golsSofridos);
+    const defesas = dados.map((d) => d.chutesRecebidos - d.golsSofridos);
 
     const federado = dados.filter((d) => d.tipoPartida === "Federado").length;
 
@@ -356,8 +375,12 @@
           {
             label: "Gols Sofridos",
             data: gols,
-            borderWidth: 2,
             tension: 0.5,
+            fill: true,
+            pointBackgroundColor: "#fff",
+            pointBorderColor: "#2196f3",
+            pointRadius: 3,
+            pointHoverRadius: 6,
           },
         ],
       },
@@ -378,6 +401,8 @@
             data: [federado, naoFederado],
             borderWidth: 0,
             backgroundColor: ["purple", "aqua"],
+            borderWidth: 4,
+            hoverOffset: 18,
           },
         ],
       },
@@ -386,6 +411,34 @@
           legend: { display: false },
         },
         maintainAspectRatio: false,
+      },
+    });
+
+    graficoDefesas = new Chart(document.getElementById("barDefesas"), {
+      type: "bar",
+      data: {
+        labels,
+        datasets: [
+          {
+            label: "Defesas",
+            data: defesas,
+            borderWidth: 1,
+            borderRadius: 8,
+          },
+        ],
+      },
+      options: {
+        plugins: {
+          legend: {
+            display: false,
+          },
+        },
+        maintainAspectRatio: false,
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+        },
       },
     });
   }
