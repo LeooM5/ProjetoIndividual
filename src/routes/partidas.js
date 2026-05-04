@@ -11,4 +11,8 @@ router.get("/dashboard/:idUsuario", function (req, res) {
   partidaController.buscarDashboard(req, res);
 });
 
+router.get("/cards/:idUsuario", function (req, res) {
+  partidaController.cards(req, res);
+});
+
 module.exports = router;

@@ -91,7 +91,7 @@
                     display: inline-block;
                   "
                 ></span>
-                Ótimo (>95)
+                Ótimo (>95%)
               </span>
 
               <span
@@ -139,9 +139,7 @@
 
             <div id="box5" class="box box5">
               <h6>Status</h6>
-              <span style="color: #5292e6" id="b_status">
-                Ótimo <span class="bolinha-good"></span>
-              </span>
+              <span style="color: #5292e6" id="b_status"> </span>
             </div>
           </div>
 
@@ -168,7 +166,7 @@
           </div>
         </div>
 
-        <div class="right-section">
+        <div  class="right-section">
           <h2><i class="fa-solid fa-circle-plus"></i> Registrar Partida</h2>
 
           <hr style="width: 100%" />
@@ -301,24 +299,32 @@
   function carregarGraficos() {
     const idUsuario = sessionStorage.ID_USUARIO;
 
+    fetch(`/partidas/cards/${idUsuario}`)
+      .then((res) => res.json())
+      .then((dados) => atualizarCards(dados));
+
     fetch(`/partidas/dashboard/${idUsuario}`)
       .then((res) => res.json())
       .then((dados) => {
-        atualizarCards(dados);
         plotarGraficos(dados);
         preencherTabela(dados);
-      })
-      .catch((err) => console.log(err));
+      });
   }
 
   function atualizarCards(dados) {
-    const totalPartidas = dados.length;
+    if (!dados || dados.length === 0) {
+      document.getElementById("b_partidas").innerText = 0;
+      document.getElementById("b_chutesTotais").innerText = 0;
+      document.getElementById("b_golSofridos").innerText = 0;
+      document.getElementById("b_porcentagemDefesa").innerText = "0%";
+      return;
+    }
 
-    const totalChutes = dados.reduce(
-      (acc, item) => acc + item.chutesRecebidos,
-      0,
-    );
-    const totalGols = dados.reduce((acc, item) => acc + item.golsSofridos, 0);
+    const totalPartidas = dados[0].totalPartidas;
+    const totalGols =
+      dados[0].totalGolsSofridos > 0 ? dados[0].totalGolsSofridos : 0;
+    const totalChutes =
+      dados[0].totalChutesRecebidos > 0 ? dados[0].totalChutesRecebidos : 0;
 
     const savesRatio =
       totalChutes > 0
@@ -331,24 +337,22 @@
     document.getElementById("b_porcentagemDefesa").innerText = `${savesRatio}%`;
 
     let cor = "#2196f3";
-    let status = `Ótimo`;
-    let estado = `excelent`;
+    let status = "Ótimo";
+    let estado = "excelent";
 
     if (savesRatio < 80) {
-      estado = `bad`;
-      status = `Ruim`;
+      estado = "bad";
+      status = "Ruim";
       cor = "#ff4d4d";
     } else if (savesRatio <= 95) {
-      estado = `good`;
-      status = `Bom`;
+      estado = "good";
+      status = "Bom";
       cor = "#4caf50";
     }
 
     document.getElementById("b_porcentagemDefesa").style.color = cor;
-
     document.getElementById("b_status").style.color = cor;
     document.getElementById("box5").style.boxShadow = `0 8px 28px ${cor}`;
-
     document.getElementById("b_status").innerHTML =
       `${status} <span class="bolinha-${estado}"></span>`;
   }
@@ -389,6 +393,14 @@
           legend: { display: false },
         },
         maintainAspectRatio: false,
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+          x: {
+            display: false,
+          },
+        },
       },
     });
 
@@ -437,6 +449,9 @@
         scales: {
           y: {
             beginAtZero: true,
+          },
+          x: {
+            display: false,
           },
         },
       },

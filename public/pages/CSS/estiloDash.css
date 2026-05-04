@@ -81,6 +81,7 @@ main {
     align-items: center;
     width: 100%;
     background-color: var(--superficie);
+    border-radius: 1em;
 }
 
 .box {
@@ -138,6 +139,7 @@ main {
     display: flex;
     flex-direction: column;
     width: 100%;
+    width: 50em;
     height: 25em;
     align-items: center;
     justify-content: space-between;
@@ -151,6 +153,7 @@ main {
 
 canvas#barDefesas {
     max-height: 20em;
+    width: 40em;
 }
 
 #bolinha-federado {
@@ -214,7 +217,7 @@ canvas#barDefesas {
 }
 
 canvas#line {
-    margin: 2em;
+    margin-top: 2em;
 }
 
 .right-section {

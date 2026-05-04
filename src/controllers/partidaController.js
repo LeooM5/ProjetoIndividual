@@ -38,7 +38,22 @@ function buscarDashboard(req, res) {
     });
 }
 
+function cards(req, res) {
+  var idUsuario = req.params.idUsuario;
+
+  partidaModel
+    .buscarCards(idUsuario)
+    .then((resultado) => {
+      res.json(resultado);
+    })
+    .catch((erro) => {
+      console.log(erro);
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+
 module.exports = {
   registrar,
   buscarDashboard,
+  cards,
 };

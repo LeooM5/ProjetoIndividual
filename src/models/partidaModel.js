@@ -45,23 +45,33 @@ async function registrar(
   }
 }
 
+function buscarCards(idUsuario) {
+  return database.executar(`
+    SELECT
+      COUNT(*) AS totalPartidas,
+      SUM(e.golsSofridos) AS totalGolsSofridos,
+      SUM(e.chutesRecebidos) AS totalChutesRecebidos
+    FROM estatistica e
+    WHERE e.fkUsuario = ${idUsuario}
+  `);
+}
+
 function buscarDashboard(idUsuario) {
-  var instrucaoSql = `
+  return database.executar(`
     SELECT
       p.dataPartida,
       p.tipoPartida,
       e.golsSofridos,
       e.chutesRecebidos
     FROM estatistica e
-    JOIN partida p
-      ON e.fkPartida = p.idPartida
-    WHERE e.fkUsuario = ${idUsuario};
-  `;
-
-  return database.executar(instrucaoSql);
+    JOIN partida p ON e.fkPartida = p.idPartida
+    WHERE e.fkUsuario = ${idUsuario}
+    ORDER BY p.dataPartida ASC
+  `);
 }
 
 module.exports = {
   registrar,
   buscarDashboard,
+  buscarCards,
 };

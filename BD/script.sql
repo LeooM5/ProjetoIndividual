@@ -5,9 +5,9 @@ use projetoPessoal;
 CREATE TABLE usuario (
     idusuario INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(45),
-    email VARCHAR(75),
+    email VARCHAR(75) UNIQUE,
     senha VARCHAR(25),
-    termos TINYINT
+    termos TINYINT CHECK(termos = 1)
 );
   
 SELECT 
@@ -28,7 +28,7 @@ CREATE TABLE estatistica (
     golsSofridos INT,
     golsPenalti INT,
     fkUsuario INT NOT NULL,
-    fkPartida INT NOT NULL,
+    fkPartida INT NOT NULL UNIQUE,
     FOREIGN KEY (fkUsuario)
         REFERENCES usuario(idusuario),
     FOREIGN KEY (fkPartida)
@@ -46,3 +46,7 @@ truncate usuario;
 select * from usuario;
 select * from estatistica;
 select * from partida;
+
+show tables;
+
+desc estatistica;
