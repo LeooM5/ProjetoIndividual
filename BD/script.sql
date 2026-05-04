@@ -30,7 +30,19 @@ CREATE TABLE estatistica (
     fkUsuario INT NOT NULL,
     fkPartida INT NOT NULL,
     FOREIGN KEY (fkUsuario)
-        REFERENCES usuario(idUsuario),
+        REFERENCES usuario(idusuario),
     FOREIGN KEY (fkPartida)
         REFERENCES partida(idPartida)
 );
+
+select * from partida;
+
+set foreign_key_checks = 1;
+
+truncate estatistica;
+truncate partida;
+truncate usuario;
+
+select * from usuario;
+select * from estatistica;
+select * from partida;

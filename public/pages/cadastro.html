@@ -122,34 +122,39 @@
         if (temMaius) {
           if (criterioEspecial >= 1) {
             if (ipt_senha == ipt_senhaConfirmar) {
-              fetch("/usuarios/cadastrar", {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                  // crie um atributo que recebe o valor recuperado aqui
-                  // Agora vá para o arquivo routes/usuario.js
-                  nomeServer: ipt_name,
-                  emailServer: ipt_email,
-                  senhaServer: ipt_senha,
-                  termosServer: ipt_termosServico,
-                }),
-              })
-                .then(function (resposta) {
-                  console.log("resposta: ", resposta);
-
-                  if (resposta.ok) {
-                    window.location = "./login.html";
-                  } else {
-                    throw "Houve um erro ao tentar realizar o cadastro!";
-                  }
+              if (ipt_termosServico) {
+                fetch("/usuarios/cadastrar", {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    nomeServer: ipt_name,
+                    emailServer: ipt_email,
+                    senhaServer: ipt_senha,
+                    termosServer: ipt_termosServico,
+                  }),
                 })
-                .catch(function (resposta) {
-                  console.log(`#ERRO: ${resposta}`);
-                });
+                  .then(function (resposta) {
+                    console.log("resposta: ", resposta);
 
-              return false;
+                    if (resposta.ok) {
+                      window.location = "./login.html";
+                    } else {
+                      throw "Houve um erro ao tentar realizar o cadastro!";
+                    }
+                  })
+                  .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                  });
+
+                return false;
+              } else {
+                atencao.innerHTML = "Você deve aceitar os termos!";
+                caixaAtencao.style.opacity = 1;
+              }
             } else {
               coincideSouN.style.opacity = 1;
             }
