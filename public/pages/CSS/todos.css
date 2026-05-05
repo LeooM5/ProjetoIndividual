@@ -51,6 +51,11 @@ body {
     color: black;
 }
 
+.cabecalho.transparente a,
+.cabecalho.transparente p {
+    color: black !important;
+}
+
 .cabecalho a,
 #paragrafo-ao-logar,
 #sair {
@@ -65,7 +70,7 @@ body {
 }
 
 .cabecalho a:hover {
-    color: #c2410c;
+    color: #c2410c !important;
     transform: scale(1.05);
     opacity: 1;
 }

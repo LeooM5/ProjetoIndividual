@@ -37,6 +37,8 @@ CREATE TABLE estatistica (
 
 select * from partida;
 
+select count(*) from partida;
+
 set foreign_key_checks = 1;
 
 truncate estatistica;
