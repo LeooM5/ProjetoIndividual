@@ -21,9 +21,6 @@ function autenticar(req, res) {
           });
         } else if (resultadoAutenticar.length == 0) {
           res.status(403).send("Email e/ou senha inválido(s)");
-          erroDiv.style.display = "block";
-        } else {
-          res.status(403).send("Mais de um usuário com o mesmo login e senha!");
         }
       })
       .catch(function (erro) {
@@ -34,13 +31,11 @@ function autenticar(req, res) {
 }
 
 function cadastrar(req, res) {
-  // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
   var nome = req.body.nomeServer;
   var email = req.body.emailServer;
   var senha = req.body.senhaServer;
   var termos = req.body.termosServer;
 
-  // Faça as validações dos valores
   if (nome == undefined) {
     res.status(400).send("Seu nome está undefined!");
   } else if (email == undefined) {
@@ -48,18 +43,25 @@ function cadastrar(req, res) {
   } else if (senha == undefined) {
     res.status(400).send("Sua senha está undefined!");
   } else {
-    // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
     usuarioModel
-      .cadastrar(nome, email, senha, termos)
+      .buscarPorEmail(email)
       .then(function (resultado) {
-        res.json(resultado);
+        if (resultado.length > 0) {
+          res.status(409).send("Este email já está cadastrado!");
+        } else {
+          usuarioModel
+            .cadastrar(nome, email, senha, termos)
+            .then(function (resultado) {
+              res.json(resultado);
+            })
+            .catch(function (erro) {
+              console.log(erro);
+              res.status(500).json(erro.sqlMessage);
+            });
+        }
       })
       .catch(function (erro) {
         console.log(erro);
-        console.log(
-          "\nHouve um erro ao realizar o cadastro! Erro: ",
-          erro.sqlMessage,
-        );
         res.status(500).json(erro.sqlMessage);
       });
   }
