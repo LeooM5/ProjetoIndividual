@@ -7,6 +7,15 @@
     background-color: black !important;
 }
 
+.cabecalho.transparente a,
+.cabecalho.transparente p {
+    color: white !important;
+}
+
+.cabecalho.transparente a:hover {
+    color: #c2410c !important;
+}
+
 /*  */
 
 .left-total {
@@ -15,7 +24,7 @@
     left: 0;
     top: 0;
     height: 100%;
-    width: 15em;
+    width: 14em;
     background-color: var(--superficie);
     box-shadow: var(--sombra-card);
     border-right: 1px solid var(--borda);
@@ -59,7 +68,7 @@
 section {
     display: flex;
     justify-content: space-between;
-    margin-right: 5em;
+    width: 100em;
 }
 
 main {
@@ -72,7 +81,7 @@ main {
     flex-direction: column;
     justify-content: space-between;
     gap: 3em;
-    width: 70%;
+    width: 72%;
 }
 
 .box-performance {
@@ -88,7 +97,7 @@ main {
     display: flex;
     justify-content: space-evenly;
     flex-direction: column;
-    width: 10em;
+    width: 100%;
     height: 10em;
     background-color: var(--superficie);
     border-radius: 1em;
@@ -102,25 +111,43 @@ main {
     width: 90%;
 }
 
+.box6 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.metricas-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.metricas-info span {
+    font-size: 1.2em !important;
+}
+
 .box h6 {
-    font-size: 1.5em;
+    font-size: 1.2em;
     text-align: center;
 }
 
 .boxes {
     display: flex;
     justify-content: space-between;
-    gap: 3em;
+    gap: 1em;
 }
 
 .boxes span {
-    font-size: 2.5em;
+    font-size: 3.5em;
     color: black;
     display: flex;
     justify-content: center;
 }
 
 .grafico-linhas {
+    display: flex;
+    flex-direction: column;
     width: 100%;
     height: 20em;
     background-color: var(--superficie);
@@ -143,17 +170,20 @@ main {
     height: 25em;
     align-items: center;
     justify-content: space-between;
-    border-radius: 1em;
     padding: 1em;
+}
+
+.pizza {
+    border-right: 1px solid black;
 }
 
 .grafico-defesas h2 {
     justify-self: flex-start;
 }
 
-canvas#barDefesas {
+canvas#barGolsSofridos {
     max-height: 20em;
-    width: 40em;
+    width: 35em;
 }
 
 #bolinha-federado {
@@ -182,8 +212,8 @@ canvas#barDefesas {
 .bolinha-excelent {
     display: inline-block;
     background-color: green;
-    width: .1em;
-    height: .1em;
+    width: .05em;
+    height: .05em;
     border-radius: 1em;
     margin-left: .1em;
 }
@@ -218,6 +248,8 @@ canvas#barDefesas {
 
 canvas#line {
     margin-top: 2em;
+    max-width: 90%;
+    align-self: center;
 }
 
 .right-section {
@@ -226,7 +258,6 @@ canvas#line {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    height: 55em;
     background-color: var(--superficie);
     border-radius: 1em;
     padding: 2em;
@@ -242,18 +273,19 @@ canvas#line {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    width: 90%;
-    height: 25em;
+    width: 20em;
+    height: 22em;
 }
 
 .right-section form input,
 form select,
 form button {
-    border-radius: .5em;
+    border-top-left-radius: .5em;
+    border-top-right-radius: .5em;
     align-self: center;
     height: 3em;
     width: 100%;
-    background-color: #ffbc5e36;
+    background-color: var(--fundo);
     border: 0;
     outline: 0;
     transition: .3s;
@@ -276,6 +308,8 @@ form button {
     cursor: pointer;
     padding-left: 0;
     font-size: 1.5em;
+    height: 2.5em;
+    border-radius: .5em;
 }
 
 form button:hover {
@@ -285,7 +319,7 @@ form button:hover {
 .partidaBolas {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .box-partidas-bolas {
@@ -297,6 +331,7 @@ form button:hover {
     display: flex;
     flex-direction: column;
     border-radius: 1em;
+    height: 40%;
 }
 
 .tabela-historico h1 {
@@ -310,6 +345,7 @@ table {
     border-collapse: collapse;
     text-align: center;
     border: 1px solid black;
+    height: 100%;
 }
 
 table tr {
@@ -319,6 +355,7 @@ table tr {
 table th,
 table td {
     padding: .5em;
+    font-size: 1.2em;
 }
 
 table thead tr:nth-child(1) {

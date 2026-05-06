@@ -55,96 +55,97 @@
         <div class="left-section">
           <div class="boxes">
             <div class="box box1">
-              <h6>Total de Partidas</h6>
+              <h6>Partidas <i class="fa-solid fa-futbol"></i></h6>
               <span id="b_partidas"></span>
             </div>
             <div class="box box2">
-              <h6>Gols Totais Sofridos</h6>
+              <h6>Gols Sofridos <i class="fa-solid fa-shield-halved"></i></h6>
               <span id="b_golSofridos"></span>
             </div>
             <div class="box box3">
-              <h6>Chutes Totais Recebidos</h6>
+              <h6>Chutes Recebidos <i class="fa-solid fa-crosshairs"></i></h6>
               <span id="b_chutesTotais"></span>
             </div>
             <div class="box box4">
-              <h6>Porcentagem de Defesa</h6>
+              <h6>
+                Porcentagem de Defesa <i class="fa-solid fa-chart-line"></i>
+              </h6>
               <span style="color: #2196f3" id="b_porcentagemDefesa"></span>
             </div>
             <div class="box box6">
-              <h6>Métricas</h6>
+              <h6>Métricas <i class="fa-solid fa-chart-bar"></i></h6>
 
-              <span
-                style="
-                  display: inline-flex;
-                  align-items: center;
-                  gap: 8px;
-                  font-weight: bold;
-                  font-size: 14px;
-                "
-              >
+              <div class="metricas-info">
                 <span
                   style="
-                    width: 12px;
-                    height: 12px;
-                    border-radius: 50%;
-                    background-color: #2196f3;
-                    display: inline-block;
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 8px;
+                    font-weight: bold;
                   "
-                ></span>
-                Ótimo (>95%)
-              </span>
+                >
+                  <span
+                    style="
+                      width: 12px;
+                      height: 12px;
+                      border-radius: 50%;
+                      background-color: #2196f3;
+                      display: inline-block;
+                    "
+                  ></span>
+                  Ótimo (>95%)
+                </span>
 
-              <span
-                style="
-                  display: inline-flex;
-                  align-items: center;
-                  gap: 8px;
-                  font-weight: bold;
-                  font-size: 14px;
-                "
-              >
                 <span
                   style="
-                    width: 12px;
-                    height: 12px;
-                    border-radius: 50%;
-                    background-color: #4caf50;
-                    display: inline-block;
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 8px;
+                    font-weight: bold;
                   "
-                ></span>
-                Bom (80-95%)
-              </span>
+                >
+                  <span
+                    style="
+                      width: 12px;
+                      height: 12px;
+                      border-radius: 50%;
+                      background-color: #4caf50;
+                      display: inline-block;
+                    "
+                  ></span>
+                  Bom (80-95%)
+                </span>
 
-              <span
-                style="
-                  display: inline-flex;
-                  align-items: center;
-                  gap: 8px;
-                  font-weight: bold;
-                  font-size: 14px;
-                "
-              >
                 <span
                   style="
-                    width: 12px;
-                    height: 12px;
-                    border-radius: 50%;
-                    background-color: #ff4d4d;
-                    display: inline-block;
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 8px;
+                    font-weight: bold;
                   "
-                ></span>
-                Ruim (< 80%)
-              </span>
+                >
+                  <span
+                    style="
+                      width: 12px;
+                      height: 12px;
+                      border-radius: 50%;
+                      background-color: #ff4d4d;
+                      display: inline-block;
+                    "
+                  ></span>
+                  Ruim (< 80%)
+                </span>
+              </div>
             </div>
 
             <div id="box5" class="box box5">
-              <h6>Status</h6>
+              <h6>Status <i class="fa-solid fa-circle-info"></i></h6>
               <span style="color: #5292e6" id="b_status"> </span>
             </div>
           </div>
 
           <div class="grafico-linhas">
-            <h2>Histórico de Partidas</h2>
+            <h2>Defesas Por Partida</h2>
             <canvas id="line"></canvas>
           </div>
 
@@ -160,13 +161,13 @@
               </div>
             </div>
             <div class="grafico-defesas">
-              <h2>Defesas por Partida</h2>
-              <canvas id="barDefesas"></canvas>
+              <h2>Gols por Partida</h2>
+              <canvas id="barGolsSofridos"></canvas>
             </div>
           </div>
         </div>
 
-        <div  class="right-section">
+        <div class="right-section">
           <h2><i class="fa-solid fa-circle-plus"></i> Registrar Partida</h2>
 
           <hr style="width: 100%" />
@@ -221,7 +222,7 @@
           <hr style="width: 100%" />
 
           <div class="tabela-historico">
-            <h1>Histórico de Partidas Recentes</h1>
+            <h1>Últimas 5 Partidas:</h1>
             <table>
               <thead>
                 <tr>
@@ -250,240 +251,4 @@
 </html>
 
 <script src="./JS/header.js"></script>
-<script>
-  let graficoLinha;
-  let graficoPizza;
-  let graficoDefesas;
-
-  function iniciarDashboard() {
-    validarSessaoDash();
-    carregarGraficos();
-  }
-
-  function registrarPartida() {
-    if (
-      datePartida.value != "" &&
-      chutesPartida.value != "" &&
-      penaltisPartida.value != "" &&
-      golsPartida.value != "" &&
-      penaltisPercebido.value != "" &&
-      typePartida.value != ""
-    ) {
-      fetch("/partidas/registrar", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          dataServer: datePartida.value,
-          chutesServer: chutesPartida.value,
-          penaltisServer: penaltisPartida.value,
-          golsServer: golsPartida.value,
-          golsPenaltiServer: penaltisPercebido.value,
-          tipoServer: typePartida.value,
-          usuarioServer: sessionStorage.ID_USUARIO,
-        }),
-      })
-        .then((resposta) => {
-          if (resposta.ok) {
-            location.reload();
-          }
-        })
-        .catch((erro) => console.log(erro));
-
-      return false;
-    }
-    alert("Insira dados válidos");
-  }
-
-  function carregarGraficos() {
-    const idUsuario = sessionStorage.ID_USUARIO;
-
-    fetch(`/partidas/cards/${idUsuario}`)
-      .then((res) => res.json())
-      .then((dados) => atualizarCards(dados));
-
-    fetch(`/partidas/dashboard/${idUsuario}`)
-      .then((res) => res.json())
-      .then((dados) => {
-        plotarGraficos(dados);
-        preencherTabela(dados);
-      });
-  }
-
-  function atualizarCards(dados) {
-    if (!dados || dados.length === 0) {
-      document.getElementById("b_partidas").innerText = 0;
-      document.getElementById("b_chutesTotais").innerText = 0;
-      document.getElementById("b_golSofridos").innerText = 0;
-      document.getElementById("b_porcentagemDefesa").innerText = "0%";
-      return;
-    }
-
-    const totalPartidas = dados[0].totalPartidas;
-    const totalGols =
-      dados[0].totalGolsSofridos > 0 ? dados[0].totalGolsSofridos : 0;
-    const totalChutes =
-      dados[0].totalChutesRecebidos > 0 ? dados[0].totalChutesRecebidos : 0;
-
-    const savesRatio =
-      totalChutes > 0
-        ? (((totalChutes - totalGols) / totalChutes) * 100).toFixed(1)
-        : 0;
-
-    document.getElementById("b_partidas").innerText = totalPartidas;
-    document.getElementById("b_chutesTotais").innerText = totalChutes;
-    document.getElementById("b_golSofridos").innerText = totalGols;
-    document.getElementById("b_porcentagemDefesa").innerText = `${savesRatio}%`;
-
-    let cor = "#2196f3";
-    let status = "Ótimo";
-    let estado = "excelent";
-
-    if (savesRatio < 80) {
-      estado = "bad";
-      status = "Ruim";
-      cor = "#ff4d4d";
-    } else if (savesRatio <= 95) {
-      estado = "good";
-      status = "Bom";
-      cor = "#4caf50";
-    }
-
-    document.getElementById("b_porcentagemDefesa").style.color = cor;
-    document.getElementById("b_status").style.color = cor;
-    document.getElementById("box5").style.boxShadow = `0 8px 28px ${cor}`;
-    document.getElementById("b_status").innerHTML =
-      `${status} <span class="bolinha-${estado}"></span>`;
-  }
-
-  function plotarGraficos(dados) {
-    const labels = dados.map((d) =>
-      new Date(d.dataPartida).toLocaleDateString("pt-BR"),
-    );
-
-    const gols = dados.map((d) => d.golsSofridos);
-    const defesas = dados.map((d) => d.chutesRecebidos - d.golsSofridos);
-
-    const federado = dados.filter((d) => d.tipoPartida === "Federado").length;
-
-    const naoFederado = dados.filter(
-      (d) => d.tipoPartida === "Não Federado",
-    ).length;
-
-    graficoLinha = new Chart(document.getElementById("line"), {
-      type: "line",
-      data: {
-        labels,
-        datasets: [
-          {
-            label: "Gols Sofridos",
-            data: gols,
-            tension: 0.5,
-            fill: true,
-            pointBackgroundColor: "#fff",
-            pointBorderColor: "#2196f3",
-            pointRadius: 3,
-            pointHoverRadius: 6,
-          },
-        ],
-      },
-      options: {
-        plugins: {
-          legend: { display: false },
-        },
-        maintainAspectRatio: false,
-        scales: {
-          y: {
-            beginAtZero: true,
-          },
-          x: {
-            display: false,
-          },
-        },
-      },
-    });
-
-    graficoPizza = new Chart(document.getElementById("pizza"), {
-      type: "doughnut",
-      data: {
-        labels: ["Federado", "Não Federado"],
-        datasets: [
-          {
-            data: [federado, naoFederado],
-            borderWidth: 0,
-            backgroundColor: ["purple", "aqua"],
-            borderWidth: 4,
-            hoverOffset: 18,
-          },
-        ],
-      },
-      options: {
-        plugins: {
-          legend: { display: false },
-        },
-        maintainAspectRatio: false,
-      },
-    });
-
-    graficoDefesas = new Chart(document.getElementById("barDefesas"), {
-      type: "bar",
-      data: {
-        labels,
-        datasets: [
-          {
-            label: "Defesas",
-            data: defesas,
-            borderWidth: 1,
-            borderRadius: 8,
-          },
-        ],
-      },
-      options: {
-        plugins: {
-          legend: {
-            display: false,
-          },
-        },
-        maintainAspectRatio: false,
-        scales: {
-          y: {
-            beginAtZero: true,
-          },
-          x: {
-            display: false,
-          },
-        },
-      },
-    });
-  }
-
-  function preencherTabela(dados) {
-    const tbody = document.getElementById("tbodyHistorico");
-
-    tbody.innerHTML = "";
-
-    const ordenados = [...dados]
-      .sort((a, b) => new Date(b.dataPartida) - new Date(a.dataPartida))
-      .slice(0, 5);
-
-    ordenados.forEach((partida) => {
-      let status = "ÓTIMO";
-
-      if (partida.golsSofridos >= 2) {
-        status = "RUIM";
-      } else if (partida.golsSofridos >= 1) {
-        status = "BOM";
-      }
-
-      tbody.innerHTML += `
-      <tr>
-        <td>${new Date(partida.dataPartida).toLocaleDateString("pt-BR")}</td>
-        <td>${partida.golsSofridos}</td>
-        <td>${partida.tipoPartida}</td>
-        <td>${status}</td>
-      </tr>
-    `;
-    });
-  }
-</script>
+<script src="./JS/dash.js"></script>
