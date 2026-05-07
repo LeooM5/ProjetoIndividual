@@ -369,3 +369,10 @@ table thead tr:nth-child(1) {
 .rodape {
     margin-top: 5em !important;
 }
+
+/* EXTRAS */
+
+
+i.fa-solid {
+    color: #c2410c;
+}
