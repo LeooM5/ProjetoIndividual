@@ -1,22 +1,21 @@
+/* FONTES */
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Text+Me+One&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Supermercado+One&display=swap');
+
+/* GERAL */
+
 * {
     margin: 0;
     padding: 0;
+    font-family: "Text Me One", sans-serif;
 }
 
 .cabecalho {
-    background-color: black !important;
+    background-color: rgba(231, 170, 144, 0.533) !important;
+    border-bottom: 1px solid #c2410c;
 }
-
-.cabecalho.transparente a,
-.cabecalho.transparente p {
-    color: white !important;
-}
-
-.cabecalho.transparente a:hover {
-    color: #c2410c !important;
-}
-
-/*  */
 
 .left-total {
     margin-top: 4em;
@@ -24,8 +23,8 @@
     left: 0;
     top: 0;
     height: 100%;
-    width: 14em;
-    background-color: var(--superficie);
+    width: 20em;
+    background-color: #fcb5988e;
     box-shadow: var(--sombra-card);
     border-right: 1px solid var(--borda);
 }
@@ -41,7 +40,8 @@
 }
 
 .left-total h6 {
-    font-size: 1.2em;
+    font-size: 1em;
+    color: #494949;
 }
 
 .left-total p:nth-child(1) {
@@ -53,10 +53,18 @@
     display: flex;
     align-items: center;
     cursor: pointer;
+    margin-left: 1em;
+    margin-right: 1em;
+    border-radius: .5em;
+    font-size: 1.2em;
 }
 
 .left-total p:hover {
-    background-color: var(--destaque-leve);
+    background-color: #c2410c;
+}
+
+.left-total p i {
+    color: black;
 }
 
 .localizacao p i {
@@ -68,7 +76,8 @@
 section {
     display: flex;
     justify-content: space-between;
-    width: 100em;
+    width: 95em;
+    margin-left: 5em;
 }
 
 main {
@@ -89,8 +98,7 @@ main {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    background-color: var(--superficie);
-    border-radius: 1em;
+    gap: 2em;
 }
 
 .box {
@@ -128,7 +136,7 @@ main {
 }
 
 .box h6 {
-    font-size: 1.2em;
+    font-size: 1.1em;
     text-align: center;
 }
 
@@ -142,7 +150,13 @@ main {
     font-size: 3.5em;
     color: black;
     display: flex;
+    font-weight: 900;
     justify-content: center;
+    font-family: "Supermercado One", sans-serif;
+}
+
+.box5 span, .box6 span, .box4 span {
+    font-family: "Text Me One", sans-serif;
 }
 
 .grafico-linhas {
@@ -171,10 +185,8 @@ main {
     align-items: center;
     justify-content: space-between;
     padding: 1em;
-}
-
-.pizza {
-    border-right: 1px solid black;
+    background-color: white;
+    border-radius: 1em;
 }
 
 .grafico-defesas h2 {
@@ -183,22 +195,21 @@ main {
 
 canvas#barGolsSofridos {
     max-height: 20em;
-    width: 35em;
 }
 
 #bolinha-federado {
     display: inline-block;
-    width: .7em;
-    height: .7em;
-    background-color: purple;
+    width: 1em;
+    height: 1em;
+    background-color: #9c2f03;
     border-radius: 100%;
 }
 
 #bolinha-Naofederado {
     display: inline-block;
-    width: .7em;
-    height: .7em;
-    background-color: aqua;
+    width: 1em;
+    height: 1em;
+    background-color: #f8bda6;
     border-radius: 100%;
 }
 
@@ -258,11 +269,15 @@ canvas#line {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+}
+
+.right-section .registrar-partida,
+.tabela-historico {
     background-color: var(--superficie);
     border-radius: 1em;
     padding: 2em;
-    box-shadow: var(--sombra-card-forte);
-    border: 1px solid rgba(249, 115, 22, 0.14);
+    margin-right: 4em;
+    width: 100%;
 }
 
 .right-section h2 {
@@ -289,13 +304,13 @@ form button {
     border: 0;
     outline: 0;
     transition: .3s;
-    outline: 0;
+    outline: 1px solid salmon;
 }
 
 form input:focus,
 form select:focus,
 form button:focus {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #c2410c;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
 }
@@ -310,6 +325,8 @@ form button {
     font-size: 1.5em;
     height: 2.5em;
     border-radius: .5em;
+    background-color: #c2410c;
+    color: white;
 }
 
 form button:hover {
@@ -344,8 +361,7 @@ table {
     font-size: .9em;
     border-collapse: collapse;
     text-align: center;
-    border: 1px solid black;
-    height: 100%;
+    max-height: 100%;
 }
 
 table tr {
@@ -358,9 +374,18 @@ table td {
     font-size: 1.2em;
 }
 
+table tr td:nth-child(1) {
+    font-weight: bold;
+}
+
+table tr td {
+    border-bottom: 1px solid #f4a7899b;
+
+}
+
 table thead tr:nth-child(1) {
-    background-color: var(--botao-escuro);
-    color: var(--superficie);
+    color: black;
+    border-bottom: 1px solid #c2410c;
 }
 
 

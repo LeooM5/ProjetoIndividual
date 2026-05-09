@@ -34,7 +34,6 @@ function cadastrar(req, res) {
   var nome = req.body.nomeServer;
   var email = req.body.emailServer;
   var senha = req.body.senhaServer;
-  var termos = req.body.termosServer;
 
   if (nome == undefined) {
     res.status(400).send("Seu nome está undefined!");
@@ -50,7 +49,7 @@ function cadastrar(req, res) {
           res.status(409).send("Este email já está cadastrado!");
         } else {
           usuarioModel
-            .cadastrar(nome, email, senha, termos)
+            .cadastrar(nome, email, senha)
             .then(function (resultado) {
               res.json(resultado);
             })

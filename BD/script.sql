@@ -6,8 +6,7 @@ CREATE TABLE usuario (
     idusuario INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(45),
     email VARCHAR(75) UNIQUE,
-    senha VARCHAR(25),
-    termos TINYINT CHECK(termos = 1)
+    senha VARCHAR(25)
 );
   
 SELECT 

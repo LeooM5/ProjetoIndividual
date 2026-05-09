@@ -67,7 +67,7 @@ function atualizarCards(dados) {
     return;
   }
 
-  const totalPartidas = dados[0].totalPartidas;
+  const totalPartidas = dados[0].totalPartidas > 0 ? dados[0].totalPartidas : 0;
   const totalGols =
     dados[0].totalGolsSofridos > 0 ? dados[0].totalGolsSofridos : 0;
   const totalChutes =
@@ -118,7 +118,15 @@ function plotarGraficos(dados) {
     (d) => d.tipoPartida === "Não Federado",
   ).length;
 
-  graficoLinha = new Chart(document.getElementById("line"), {
+  const ctx = document.getElementById("line").getContext("2d");
+
+  const gradient = ctx.createLinearGradient(0, 0, 0, 350);
+
+  gradient.addColorStop(0, "rgba(194, 65, 12, 0.85)");
+  gradient.addColorStop(0.35, "rgba(194, 65, 12, 0.45)");
+  gradient.addColorStop(1, "rgba(194, 65, 12, 0)");
+
+  graficoLinha = new Chart(ctx, {
     type: "line",
     data: {
       labels,
@@ -128,10 +136,13 @@ function plotarGraficos(dados) {
           data: defesas,
           tension: 0.5,
           fill: true,
-          pointBackgroundColor: "#fff",
-          pointBorderColor: "#2196f3",
-          pointRadius: 3,
-          pointHoverRadius: 6,
+          backgroundColor: gradient,
+          borderColor: "#c2410c",
+          borderWidth: 2,
+          pointBackgroundColor: "#eda082",
+          pointBorderColor: "#ed9876",
+          pointRadius: 4,
+          pointHoverRadius: 10,
         },
       ],
     },
@@ -159,9 +170,8 @@ function plotarGraficos(dados) {
         {
           data: [federado, naoFederado],
           borderWidth: 0,
-          backgroundColor: ["purple", "aqua"],
-          borderWidth: 4,
-          hoverOffset: 18,
+          backgroundColor: ["#9c2f03", "#f8bda6"],
+          borderWidth: 2,
         },
       ],
     },
@@ -183,6 +193,7 @@ function plotarGraficos(dados) {
           data: gols,
           borderWidth: 1,
           borderRadius: 8,
+          backgroundColor: "#d27854",
         },
       ],
     },

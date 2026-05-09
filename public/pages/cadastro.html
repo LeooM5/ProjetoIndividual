@@ -70,14 +70,6 @@
               ></span>
             </div>
             <div class="botao-cadastrar">
-              <div class="termos">
-                <p>
-                  <input type="checkbox" id="termos" />
-
-                  Eu concordo com os termos de
-                  <span>Serviço e de Privacidade</span>
-                </p>
-              </div>
               <button onclick="cadastrar()">
                 Criar conta <i class="fa-solid fa-arrow-right"></i>
               </button>
@@ -95,15 +87,62 @@
     let ipt_email = email.value;
     let ipt_senha = senha.value;
     let ipt_senhaConfirmar = confirmar_senha.value;
-    let ipt_termosServico = termos.checked;
 
     let caixaAtencao = atencaoCard;
-    let mensagem = atencao;
-    let senhaVetor = ipt_senha.split("");
+
+    let retornoDaFuncaoVerificacoes = verificacoes(
+      ipt_name,
+      ipt_email,
+      ipt_senha,
+      ipt_senhaConfirmar,
+    );
+
+    if (retornoDaFuncaoVerificacoes == true) {
+      fetch("/usuarios/cadastrar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          // crie um atributo que recebe o valor recuperado aqui
+          // Agora vá para o arquivo routes/usuario.js
+          nomeServer: ipt_name,
+          emailServer: ipt_email,
+          senhaServer: ipt_senha,
+        }),
+      })
+        .then(function (resposta) {
+          console.log("resposta: ", resposta);
+
+          if (resposta.ok) {
+            window.location = "./login.html";
+          } else if (resposta.status == 409) {
+            divERROOO.innerHTML = "Este email já está em uso!";
+            divERROOO.style.opacity = 1;
+          } else {
+            throw "Houve um erro ao tentar realizar o cadastro!";
+          }
+        })
+        .catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+        });
+
+      return false;
+    } else {
+      atencao.innerHTML = retornoDaFuncaoVerificacoes;
+      caixaAtencao.style.opacity = 1;
+      setTimeout(() => {
+        caixaAtencao.style.opacity = 0;
+      }, 2000);
+    }
+  }
+
+  function verificacoes(nome, email, senha, confirmacao) {
+    let senhaVetor = senha.split("");
     let criterioEspecial = 0;
 
-    let temMaius = ipt_senha != ipt_senha.toLowerCase();
-    let temMinus = ipt_senha != ipt_senha.toUpperCase();
+    let temMaius = senha != senha.toLowerCase();
+    let temMinus = senha != senha.toUpperCase();
 
     for (let i = 0; i < senhaVetor.length; i++) {
       if (
@@ -116,80 +155,22 @@
       }
     }
 
-    if (ipt_name.length >= 3) {
-      if (ipt_email.includes("@") && ipt_email.endsWith(".com")) {
-        if (ipt_senha.length >= 6) {
-          if (temMaius) {
-            if (criterioEspecial >= 1) {
-              if (ipt_senha == ipt_senhaConfirmar) {
-                if (ipt_termosServico) {
-                  fetch("/usuarios/cadastrar", {
-                    method: "POST",
-                    headers: {
-                      "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                      // crie um atributo que recebe o valor recuperado aqui
-                      // Agora vá para o arquivo routes/usuario.js
-                      nomeServer: ipt_name,
-                      emailServer: ipt_email,
-                      senhaServer: ipt_senha,
-                      termosServer: ipt_termosServico,
-                    }),
-                  })
-                    .then(function (resposta) {
-                      console.log("resposta: ", resposta);
-
-                      if (resposta.ok) {
-                        window.location = "./login.html";
-                      } else if (resposta.status == 409) {
-                        divERROOO.innerHTML = "Este email já está em uso!";
-                        divERROOO.style.opacity = 1;
-                      } else {
-                        throw "Houve um erro ao tentar realizar o cadastro!";
-                      }
-                    })
-                    .catch(function (resposta) {
-                      console.log(`#ERRO: ${resposta}`);
-                    });
-
-                  return false;
-                } else {
-                  atencao.innerHTML = "Você deve aceitar os termos!";
-                  caixaAtencao.style.opacity = 1;
-                }
-              } else {
-                divERROOO.innerHTML = `As senhas não coincidem`;
-                divERROOO.style.opacity = 1;
-              }
-            } else {
-              atencao.innerHTML = "A senha deve conter caractere especial!";
-              caixaAtencao.style.opacity = 1;
-            }
-            if (temMinus) {
-            } else {
-              atencao.innerHTML = "A senha deve conter caractere minúsculo!";
-              caixaAtencao.style.opacity = 1;
-            }
-          } else {
-            atencao.innerHTML = "A senha deve conter caractere maiúsculo!";
-            caixaAtencao.style.opacity = 1;
-          }
-        } else {
-          atencao.innerHTML = "A senha deve possuir mais de 6 caracteres!";
-          caixaAtencao.style.opacity = 1;
-        }
-      } else {
-        atencao.innerHTML = "O email deve ser válido!";
-        caixaAtencao.style.opacity = 1;
-      }
-    } else {
-      atencao.innerHTML = "Você deve inserir seu nome!";
-      caixaAtencao.style.opacity = 1;
+    if (nome.length < 3) {
+      return `Você deve inserir seu nome!`;
+    } else if (!(email.includes("@") && email.endsWith(".com"))) {
+      return `O email deve ser válido!`;
+    } else if (senha.length < 6) {
+      return `A senha deve possuir pelo menos 6 caracteres!`;
+    } else if (!temMaius) {
+      return `A senha deve conter caractere maiúsculo!`;
+    } else if (!temMinus) {
+      return `A senha deve conter caractere minúsculo!`;
+    } else if (criterioEspecial <= 0) {
+      return `A senha deve conter caractere especial!`;
+    } else if (senha != confirmacao) {
+      return `As senhas não coincidem`;
     }
 
-    setTimeout(() => {
-      caixaAtencao.style.opacity = 0;
-    }, 2000);
+    return true;
   }
 </script>

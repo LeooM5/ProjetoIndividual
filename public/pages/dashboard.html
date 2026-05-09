@@ -39,13 +39,15 @@
 
     <div class="left-total">
       <div class="bem-vindo">
-        <h2>PERFORMANCE</h2>
+        <h2>My Performance</h2>
         <h6>Bem vindo(a), <span id="nome_usuario"></span></h6>
       </div>
 
       <div class="localizacao">
         <p><i class="fa-solid fa-chart-bar"></i> Dashboard</p>
-        <p><i class="fa-solid fa-futbol"></i> Histórico de Partida</p>
+        <p>
+          <i class="fa-solid fa-clock-rotate-left"></i> Histórico de Partida
+        </p>
         <p><i class="fa-solid fa-chart-simple"></i> Análise</p>
       </div>
     </div>
@@ -55,25 +57,25 @@
         <div class="left-section">
           <div class="boxes">
             <div class="box box1">
-              <h6>Partidas <i class="fa-solid fa-futbol"></i></h6>
+              <h6><i class="fa-solid fa-futbol"></i> Partidas</h6>
               <span id="b_partidas"></span>
             </div>
             <div class="box box2">
-              <h6>Gols Sofridos <i class="fa-solid fa-shield-halved"></i></h6>
+              <h6><i class="fa-solid fa-shield-halved"></i> Gols Sofridos</h6>
               <span id="b_golSofridos"></span>
             </div>
             <div class="box box3">
-              <h6>Chutes Recebidos <i class="fa-solid fa-crosshairs"></i></h6>
+              <h6><i class="fa-solid fa-crosshairs"></i> Chutes Recebidos</h6>
               <span id="b_chutesTotais"></span>
             </div>
             <div class="box box4">
               <h6>
-                Porcentagem de Defesa <i class="fa-solid fa-chart-line"></i>
+                <i class="fa-solid fa-chart-line"></i> Porcentagem de Defesa
               </h6>
               <span style="color: #2196f3" id="b_porcentagemDefesa"></span>
             </div>
             <div class="box box6">
-              <h6>Métricas <i class="fa-solid fa-chart-bar"></i></h6>
+              <h6><i class="fa-solid fa-gauge-high"></i> Métricas</h6>
 
               <div class="metricas-info">
                 <span
@@ -82,17 +84,9 @@
                     align-items: center;
                     gap: 8px;
                     font-weight: bold;
+                    color: #2196f3;
                   "
                 >
-                  <span
-                    style="
-                      width: 12px;
-                      height: 12px;
-                      border-radius: 50%;
-                      background-color: #2196f3;
-                      display: inline-block;
-                    "
-                  ></span>
                   Ótimo (>95%)
                 </span>
 
@@ -102,17 +96,9 @@
                     align-items: center;
                     gap: 8px;
                     font-weight: bold;
+                    color: green;
                   "
                 >
-                  <span
-                    style="
-                      width: 12px;
-                      height: 12px;
-                      border-radius: 50%;
-                      background-color: #4caf50;
-                      display: inline-block;
-                    "
-                  ></span>
                   Bom (80-95%)
                 </span>
 
@@ -122,24 +108,20 @@
                     align-items: center;
                     gap: 8px;
                     font-weight: bold;
+                    color: red;
                   "
                 >
-                  <span
-                    style="
-                      width: 12px;
-                      height: 12px;
-                      border-radius: 50%;
-                      background-color: #ff4d4d;
-                      display: inline-block;
-                    "
-                  ></span>
                   Ruim (< 80%)
                 </span>
               </div>
             </div>
 
-            <div id="box5" class="box box5">
-              <h6>Status <i class="fa-solid fa-circle-info"></i></h6>
+            <div
+              style="background-color: black; color: white"
+              id="box5"
+              class="box box5"
+            >
+              <h6><i class="fa-solid fa-signal"></i> Status</h6>
               <span style="color: #5292e6" id="b_status"> </span>
             </div>
           </div>
@@ -168,66 +150,73 @@
         </div>
 
         <div class="right-section">
-          <h2><i class="fa-solid fa-circle-plus"></i> Registrar Partida</h2>
+          <div class="registrar-partida">
+            <h2><i class="fa-solid fa-circle-plus"></i> Registrar Partida</h2>
 
-          <hr style="width: 100%" />
+            <form id="partidaRegistrar" onsubmit="return registrarPartida();">
+              <label for="datePartida">Data da Partida</label>
+              <input type="date" id="datePartida" />
+              <div class="partidaBolas">
+                <div class="box-partidas-bolas">
+                  <label style="font-size: 0.9em" for="chutesPartida"
+                    >Chutes Recebidos</label
+                  >
+                  <input
+                    min="0"
+                    placeholder="0"
+                    type="number"
+                    id="chutesPartida"
+                  />
+                </div>
+                <div class="box-partidas-bolas">
+                  <label for="penaltisPartida">Pênaltis Partida</label>
+                  <input
+                    min="0"
+                    placeholder="0"
+                    type="number"
+                    id="penaltisPartida"
+                  />
+                </div>
+                <div class="box-partidas-bolas">
+                  <label for="golsPartida">Gols Sofridos</label>
+                  <input
+                    min="0"
+                    placeholder="0"
+                    type="number"
+                    id="golsPartida"
+                  />
+                </div>
+                <div class="box-partidas-bolas">
+                  <label for="penaltisPercebido">Gols Por Pênalti</label>
+                  <input
+                    min="0"
+                    placeholder="0"
+                    type="number"
+                    id="penaltisPercebido"
+                  />
+                </div>
+              </div>
+              <label for="typePartida">Tipo de Partida</label>
+              <select id="typePartida">
+                <option selected hidden disabled></option>
+                <option>Federado</option>
+                <option>Não Federado</option>
+              </select>
 
-          <form id="partidaRegistrar" onsubmit="return registrarPartida();">
-            <label for="datePartida">Data da Partida</label>
-            <input type="date" id="datePartida" />
-            <div class="partidaBolas">
-              <div class="box-partidas-bolas">
-                <label style="font-size: 0.9em" for="chutesPartida"
-                  >Chutes Recebidos</label
-                >
-                <input
-                  min="0"
-                  placeholder="0"
-                  type="number"
-                  id="chutesPartida"
-                />
-              </div>
-              <div class="box-partidas-bolas">
-                <label for="penaltisPartida">Pênaltis Partida</label>
-                <input
-                  min="0"
-                  placeholder="0"
-                  type="number"
-                  id="penaltisPartida"
-                />
-              </div>
-              <div class="box-partidas-bolas">
-                <label for="golsPartida">Gols Sofridos</label>
-                <input min="0" placeholder="0" type="number" id="golsPartida" />
-              </div>
-              <div class="box-partidas-bolas">
-                <label for="penaltisPercebido">Gols Por Pênalti</label>
-                <input
-                  min="0"
-                  placeholder="0"
-                  type="number"
-                  id="penaltisPercebido"
-                />
-              </div>
-            </div>
-            <label for="typePartida">Tipo de Partida</label>
-            <select id="typePartida">
-              <option>Federado</option>
-              <option>Não Federado</option>
-            </select>
-
-            <button>Registrar Partida</button>
-          </form>
-
-          <hr style="width: 100%" />
+              <button>
+                <i style="color: white" class="fa-solid fa-floppy-disk"></i>
+                Registrar Partida
+              </button>
+            </form>
+          </div>
 
           <div class="tabela-historico">
-            <h1>Últimas 5 Partidas:</h1>
+            <h1>Últimas 5 Partidas</h1>
             <table>
               <thead>
                 <tr>
                   <th>Data</th>
-                  <th>Gols sofridos</th>
+                  <th>Gols</th>
                   <th>Tipo</th>
                   <th>Status</th>
                 </tr>
@@ -250,5 +239,4 @@
   </body>
 </html>
 
-<script src="./JS/header.js"></script>
 <script src="./JS/dash.js"></script>

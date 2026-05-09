@@ -99,12 +99,11 @@
           resposta.json().then((json) => {
             console.log(json);
             console.log(JSON.stringify(json));
-            sessionStorage.ID_USUARIO = json.idusuario;
             sessionStorage.EMAIL_USUARIO = json.email;
             sessionStorage.NOME_USUARIO = json.nome;
-            sessionStorage.TERMOS_USUARIO = json.termos;
+            sessionStorage.ID_USUARIO = json.idusuario;
 
-            window.location = "../index.html";
+            window.location = "./dashboard.html";
           });
         } else {
           console.log("Houve um erro ao tentar realizar o login!");

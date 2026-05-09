@@ -123,7 +123,6 @@ body {
     font-size: 2em;
     color: var(--texto-topo);
     font-weight: bold;
-    text-shadow: 0 2px 12px rgba(249, 115, 22, 0.35);
 }
 
 .cabecalho .center {
