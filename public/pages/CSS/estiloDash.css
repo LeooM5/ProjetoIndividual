@@ -149,7 +149,9 @@ main {
     font-family: "Supermercado One", sans-serif;
 }
 
-.box5 span, .box6 span, .box4 span {
+.box5 span,
+.box6 span,
+.box4 span {
     font-family: "Text Me One", sans-serif;
 }
 
@@ -236,6 +238,7 @@ canvas#barGolsSofridos {
 #b_status {
     display: flex;
     align-items: center;
+    font-size: 3em;
 }
 
 .texto-grafico-pizza {
