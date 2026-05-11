@@ -1,3 +1,11 @@
+/* FONTES */
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Text+Me+One&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Supermercado+One&display=swap');
+
+/* GERAL */
+
 :root {
     --fundo: #faf3ee;
     --fundo-corpo: linear-gradient(165deg, #fff8f0 0%, #ffe8d6 28%, #faf3ee 55%, #f0ebe6 100%);
@@ -27,13 +35,10 @@ body {
     scroll-behavior: smooth;
 }
 
-.cabecalho a {
-    display: inline-block;
-}
-
 /* HEADER */
 
 .cabecalho {
+    font-family: "Text Me One", sans-serif;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -44,6 +49,19 @@ body {
     width: 100%;
     z-index: 99;
     transition: .3s;
+}
+
+.cabecalho a {
+    display: inline-block;
+}
+
+.cabecalho .left img {
+    transition: .3s;
+    cursor: pointer;
+}
+
+.cabecalho .left img:hover {
+    transform: scale(.9);
 }
 
 .cabecalho.transparente {
