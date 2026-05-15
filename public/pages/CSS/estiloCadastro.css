@@ -29,6 +29,7 @@ body {
     width: 70em;
     height: 50em;
     border: 1px solid rgba(249, 115, 22, 0.14);
+    box-shadow: 1px 1px 5px 1px #c2410c;
 }
 
 .box .left-container {
@@ -95,11 +96,15 @@ body {
 .inputs-container input {
     border-top-left-radius: .5em;
     border-top-right-radius: .5em;
+    align-self: center;
+    height: 4em;
+    width: 100%;
+    background-color: var(--fundo);
     border: 0;
     outline: 0;
-    background-color: rgba(23, 23, 23, 0.06);
-    height: 4em;
-    padding-left: 1em;
+    transition: .3s;
+    outline: 1px solid salmon;
+    padding: 0 1em;
 }
 
 .inputs-container input::placeholder {

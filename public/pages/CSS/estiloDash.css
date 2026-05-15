@@ -33,8 +33,14 @@
     font-weight: 700;
 }
 
+.left-total h2 {
+    font-size: 2em;
+    font-weight: bold;
+    color: #494949;
+}
+
 .left-total h6 {
-    font-size: 1em;
+    font-size: 1.5em;
     color: #494949;
 }
 
@@ -261,11 +267,12 @@ canvas#line {
 }
 
 .right-section {
-    width: 20%;
+    width: 30%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
+    height: 55em;
 }
 
 .right-section .registrar-partida,
@@ -273,8 +280,6 @@ canvas#line {
     background-color: var(--superficie);
     border-radius: 1em;
     padding: 2em;
-    margin-right: 4em;
-    width: 100%;
 }
 
 .right-section h2 {
@@ -345,7 +350,9 @@ form button:hover {
     display: flex;
     flex-direction: column;
     border-radius: 1em;
-    height: 40%;
+    min-height: 5em;
+    max-height: 40em;
+    padding: 1.5em;
 }
 
 .tabela-historico h1 {
@@ -375,9 +382,32 @@ table tr td:nth-child(1) {
     font-weight: bold;
 }
 
+table tr {
+    display: flex;
+    width: 100%;
+}
+
+table tr td,
+table tr th {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+table tr td:nth-child(4) span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 5em;
+    height: 2em;
+    border-radius: 1em;
+    font-size: .8em;
+    font-weight: bold;
+}
+
 table tr td {
     border-bottom: 1px solid #f4a7899b;
-
 }
 
 table thead tr:nth-child(1) {

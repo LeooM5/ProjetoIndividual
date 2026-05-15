@@ -1,10 +1,14 @@
-let graficoLinha;
 let graficoPizza;
 let graficoGolsSofridos;
 
 function iniciarDashboard() {
   validarSessaoDash();
   carregarGraficos();
+}
+
+function iniciarTabelaHistorico() {
+  validarSessaoDash();
+  carregarTabela();
 }
 
 function registrarPartida() {
@@ -55,6 +59,16 @@ function carregarGraficos() {
     .then((dados) => {
       plotarGraficos(dados);
       preencherTabela(dados);
+    });
+}
+
+function carregarTabela() {
+  const idUsuario = sessionStorage.ID_USUARIO;
+
+  fetch(`/partidas/dashboard/${idUsuario}`)
+    .then((res) => res.json())
+    .then((dados) => {
+      preencherTabelaCompleta(dados);
     });
 }
 
@@ -118,6 +132,12 @@ function plotarGraficos(dados) {
     (d) => d.tipoPartida === "Não Federado",
   ).length;
 
+  const totalPartidas = federado + naoFederado;
+
+  const porcentagemFederado = `${((federado / totalPartidas) * 100).toFixed(2)}`;
+
+  const porcentagemNaoFederado = `${((naoFederado / totalPartidas) * 100).toFixed(2)}`;
+
   const ctx = document.getElementById("line").getContext("2d");
 
   const gradient = ctx.createLinearGradient(0, 0, 0, 350);
@@ -168,17 +188,29 @@ function plotarGraficos(dados) {
       labels: ["Federado", "Não Federado"],
       datasets: [
         {
-          data: [federado, naoFederado],
-          borderWidth: 0,
+          data: [porcentagemFederado, porcentagemNaoFederado],
           backgroundColor: ["#9c2f03", "#f8bda6"],
           borderWidth: 2,
         },
       ],
     },
+
     options: {
       plugins: {
-        legend: { display: false },
+        legend: {
+          display: false,
+        },
+        tooltip: {
+          callbacks: {
+            label: function (context) {
+              let partidas = [federado, naoFederado];
+
+              return `${context.raw}% (${partidas[context.dataIndex]} partidas)`;
+            },
+          },
+        },
       },
+
       maintainAspectRatio: false,
     },
   });
@@ -216,6 +248,45 @@ function plotarGraficos(dados) {
   });
 }
 
+function preencherTabelaCompleta(dados) {
+  const tbody = document.getElementById("tabela-historico-completa");
+
+  tbody.innerHTML = "";
+
+  const ordenados = [...dados].sort(
+    (a, b) => new Date(b.dataPartida) - new Date(a.dataPartida),
+  );
+
+  ordenados.forEach((partida) => {
+    let status = "ÓTIMO";
+
+    if (partida.golsSofridos >= 2) {
+      status = "RUIM";
+    } else if (partida.golsSofridos >= 1) {
+      status = "BOM";
+    }
+
+    let cor = ``;
+
+    if (status == "RUIM") {
+      cor = `#ff4d4d`;
+    } else if (status == "BOM") {
+      cor = `#4caf50`;
+    } else {
+      cor = `#2196f3`;
+    }
+
+    tbody.innerHTML += `
+      <tr>
+        <td>${new Date(partida.dataPartida).toLocaleDateString("pt-BR")}</td>
+        <td>${partida.golsSofridos}</td>
+        <td>${partida.tipoPartida}</td>
+        <td><span style="background-color: ${cor}">${status}</span></td>
+      </tr>
+    `;
+  });
+}
+
 function preencherTabela(dados) {
   const tbody = document.getElementById("tbodyHistorico");
 
@@ -234,13 +305,31 @@ function preencherTabela(dados) {
       status = "BOM";
     }
 
+    let cor = ``;
+
+    if (status == "RUIM") {
+      cor = `#ff4d4d`;
+    } else if (status == "BOM") {
+      cor = `#4caf50`;
+    } else {
+      cor = `#2196f3`;
+    }
+
     tbody.innerHTML += `
       <tr>
         <td>${new Date(partida.dataPartida).toLocaleDateString("pt-BR")}</td>
         <td>${partida.golsSofridos}</td>
         <td>${partida.tipoPartida}</td>
-        <td>${status}</td>
+        <td><span style="background-color: ${cor}">${status}</span></td>
       </tr>
     `;
   });
+}
+
+function irAoHistoricoDePartida() {
+  window.location = "./historicoDePartida.html";
+}
+
+function irADash() {
+  window.location = "./dashboard.html";
 }

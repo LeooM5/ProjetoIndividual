@@ -1,0 +1,16 @@
+table {
+    width: 100%;
+    min-height: 5em;
+    max-height: 100%;
+    height: 5em;
+    border: 1px solid black;
+}
+
+table thead tr {
+    background-color: #c2410c;
+    font-size: 1.2em;
+}
+
+section {
+    min-height: 73.7dvh;
+}

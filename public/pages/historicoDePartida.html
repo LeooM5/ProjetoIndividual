@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="./img/icone2.jpg" type="image/x-icon" />
+    <link rel="stylesheet" href="./CSS/todos.css" />
+    <link rel="stylesheet" href="./CSS/estiloDash.css" />
+    <link rel="stylesheet" href="./CSS/estiloHistorico.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/sessao.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+
+  <body onload="iniciarTabelaHistorico()">
+    <div class="cabecalho transparente">
+      <div class="left">
+        <a href="../index.html"
+          ><img height="50" src="./img/icone.png" alt=""
+        /></a>
+      </div>
+      <div class="center">
+        <a href="../index.html">Início</a>
+        <a href="../index.html#sobre">Sobre</a>
+        <a href="./dashboard.html">Veja a Sua</a>
+      </div>
+    </div>
+
+    <div class="left-total">
+      <div class="bem-vindo">
+        <h2>My Performance</h2>
+        <h6>Bem vindo(a), <span id="nome_usuario"></span></h6>
+      </div>
+
+      <div class="localizacao">
+        <p onclick="irADash()">
+          <i class="fa-solid fa-chart-bar"></i> Dashboard
+        </p>
+        <p>
+          <i class="fa-solid fa-clock-rotate-left"></i> Histórico de Partida
+        </p>
+      </div>
+    </div>
+
+    <main>
+      <section>
+        <table>
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Gols</th>
+              <th>Tipo</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="tabela-historico-completa"></tbody>
+        </table>
+      </section>
+    </main>
+
+    <div class="rodape">
+      <p>
+        Copyright &copy; 2026 | Desenvolvido por
+        <span id="autor"
+          ><a href="https://github.com/LeooM5">Leonardo Moura</a></span
+        >
+      </p>
+    </div>
+  </body>
+</html>
+
+<script src="./JS/dash.js"></script>

@@ -34,8 +34,6 @@ CREATE TABLE estatistica (
         REFERENCES partida(idPartida)
 );
 
-select * from partida;
-
 select count(*) from partida;
 
 set foreign_key_checks = 1;

@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-    <link rel="shortcut icon" href="./img/icone.svg" type="image/x-icon" />
+    <link rel="shortcut icon" href="./img/icone2.jpg" type="image/x-icon" />
     <link rel="stylesheet" href="./CSS/todos.css" />
     <link rel="stylesheet" href="./CSS/estiloDash.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -29,7 +28,7 @@
     <div class="cabecalho transparente">
       <div class="left">
         <a href="../index.html"
-          ><img height="50" src="./img/icone.svg" alt=""
+          ><img height="50" src="./img/icone.png" alt=""
         /></a>
       </div>
       <div class="center">
@@ -47,10 +46,9 @@
 
       <div class="localizacao">
         <p><i class="fa-solid fa-chart-bar"></i> Dashboard</p>
-        <p>
+        <p onclick="irAoHistoricoDePartida()">
           <i class="fa-solid fa-clock-rotate-left"></i> Histórico de Partida
         </p>
-        <p><i class="fa-solid fa-chart-simple"></i> Análise</p>
       </div>
     </div>
 
@@ -118,11 +116,7 @@
               </div>
             </div>
 
-            <div
-              style="background-color: black; color: white"
-              id="box5"
-              class="box box5"
-            >
+            <div id="box5" class="box box5">
               <h6><i class="fa-solid fa-signal"></i> Status</h6>
               <span style="color: #5292e6" id="b_status"> </span>
             </div>
