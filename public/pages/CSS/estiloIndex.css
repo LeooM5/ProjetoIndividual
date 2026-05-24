@@ -332,7 +332,7 @@
 }
 
 .texto-sobre-card p {
-    font-size: .9em;
+    font-size: 1em;
     padding: .5em 1.5em;
     text-align: justify;
     font-style: italic;
@@ -418,4 +418,10 @@
     background-color: var(--superficie);
     color: var(--cor-texto);
     border: 1px solid var(--borda);
+}
+
+/* EXTRAS */
+
+p {
+    font-size: 1.2em;
 }

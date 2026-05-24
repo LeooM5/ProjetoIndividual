@@ -253,6 +253,8 @@ function preencherTabelaCompleta(dados) {
 
   tbody.innerHTML = "";
 
+  console.log(dados);
+
   const ordenados = [...dados].sort(
     (a, b) => new Date(b.dataPartida) - new Date(a.dataPartida),
   );
