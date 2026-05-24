@@ -1,5 +1,5 @@
 window.addEventListener("scroll", function () {
-  let cabecalho = document.querySelector(".cabecalho");
+  let cabecalho = document.getElementsByClassName("cabecalho")[0];
   if (window.scrollY > 1) {
     cabecalho.classList.remove("transparente");
   } else {
