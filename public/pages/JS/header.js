@@ -6,3 +6,4 @@ window.addEventListener("scroll", function () {
     cabecalho.classList.add("transparente");
   }
 });
+ 
