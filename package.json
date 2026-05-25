@@ -7,7 +7,7 @@
     "start": "node app.js",
     "dev": "nodemon --exec node app.js"
   },
-  "author": "Feito pelos desenvolvedores @ São Paulo Tech School / Bandtec Digital School",
+  "author": "Leonardo Moura",
   "license": "MIT",
   "dependencies": {
     "aos": "^2.3.4",
