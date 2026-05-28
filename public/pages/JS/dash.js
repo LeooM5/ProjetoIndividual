@@ -82,6 +82,13 @@ function atualizarCards(dados) {
   }
 
   const totalPartidas = dados[0].totalPartidas > 0 ? dados[0].totalPartidas : 0;
+
+  if (totalPartidas == 0) {
+    document.getElementById("tabela-historico").style.display = "none";
+  } else {
+    document.getElementById("tabela-historico").style.display = "flex";
+  }
+
   const totalGols =
     dados[0].totalGolsSofridos > 0 ? dados[0].totalGolsSofridos : 0;
   const totalChutes =
