@@ -84,8 +84,10 @@ function atualizarCards(dados) {
   const totalPartidas = dados[0].totalPartidas > 0 ? dados[0].totalPartidas : 0;
 
   if (totalPartidas == 0) {
+    document.getElementById("box-metricas-partida").style.display = "none";
     document.getElementById("tabela-historico").style.display = "none";
   } else {
+    document.getElementById("box-metricas-partida").style.display = "flex";
     document.getElementById("tabela-historico").style.display = "flex";
   }
 
@@ -269,7 +271,7 @@ function preencherTabelaCompleta(dados) {
   ordenados.forEach((partida) => {
     let status = "ÓTIMO";
 
-    if (partida.golsSofridos >= 2) {
+    if (partida.golsSofridos >= 4) {
       status = "RUIM";
     } else if (partida.golsSofridos >= 1) {
       status = "BOM";
@@ -289,6 +291,8 @@ function preencherTabelaCompleta(dados) {
       <tr>
         <td>${new Date(partida.dataPartida).toLocaleDateString("pt-BR")}</td>
         <td>${partida.golsSofridos}</td>
+        <td>${partida.penaltisPartida}</td>
+        <td>${partida.golsPenalti}</td>
         <td>${partida.tipoPartida}</td>
         <td><span style="background-color: ${cor}">${status}</span></td>
       </tr>
@@ -308,7 +312,7 @@ function preencherTabela(dados) {
   ordenados.forEach((partida) => {
     let status = "ÓTIMO";
 
-    if (partida.golsSofridos >= 2) {
+    if (partida.golsSofridos >= 4) {
       status = "RUIM";
     } else if (partida.golsSofridos >= 1) {
       status = "BOM";

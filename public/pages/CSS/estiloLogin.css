@@ -9,3 +9,13 @@
 .botao-cadastrar {
     height: 5em;
 }
+
+.box .left-container {
+    background: url(../img/eu1.jpeg);
+    background-repeat: no-repeat;
+    width: 30em;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 1em 0 0 1em;
+}

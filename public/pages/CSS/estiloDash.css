@@ -7,7 +7,7 @@
 }
 
 .cabecalho {
-    background-color: rgba(231, 170, 144, 0.533) !important;
+    background-color: rgb(231, 170, 144) !important;
     border-bottom: 1px solid #c2410c;
 }
 
@@ -272,7 +272,7 @@ canvas#line {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    height: 55em;
+    height: 70em;
 }
 
 .right-section .registrar-partida,
@@ -291,7 +291,32 @@ canvas#line {
     flex-direction: column;
     justify-content: space-around;
     width: 20em;
-    height: 22em;
+    height: 25em;
+}
+
+.right-section .metricas-partida {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    width: 20em;
+    height: 8em;
+    padding: 2em;
+    border-radius: 1em;
+}
+
+.right-section .metricas-partida h6 {
+    font-size: 1.5em;
+}
+
+.right-section .metricas-partida span {
+    font-size: 1.4em;
+}
+
+.box-metricas-partida {
+    display: flex;
+    flex-direction: column;
 }
 
 .right-section form input,
@@ -339,6 +364,7 @@ form button:hover {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    gap: .5em;
 }
 
 .box-partidas-bolas {

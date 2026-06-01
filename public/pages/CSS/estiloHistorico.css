@@ -14,3 +14,12 @@ table thead tr {
 section {
     min-height: 73.7dvh;
 }
+
+tbody tr td:nth-child(6) span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4em;
+    height: 1.5em;
+    border-radius: 1em;
+}

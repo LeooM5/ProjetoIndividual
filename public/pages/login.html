@@ -50,6 +50,14 @@
                 "
                 >Email ou senha incorretos</span
               >
+              <img
+                id="carregando"
+                style="align-self: center; margin-top: 0.5em; display: none"
+                height="50"
+                width="50"
+                src="./img/carregando.gif"
+                alt=""
+              />
             </div>
             <div class="botao-cadastrar">
               <button onclick="entrar()" id="entrar">
@@ -75,9 +83,8 @@
       senhaVar == undefined
     ) {
       erroDiv.style.display = "block";
+      setTimeout(sumirMensagem, 2000);
       return false;
-    } else {
-      setInterval(sumirMensagem, 5000);
     }
 
     fetch("/usuarios/autenticar", {
@@ -103,11 +110,14 @@
             sessionStorage.NOME_USUARIO = json.nome;
             sessionStorage.ID_USUARIO = json.idusuario;
 
-            window.location = "./dashboard.html";
+            carregando.style.display = "block";
+
+            setTimeout(() => (window.location = "./dashboard.html"), 2000);
           });
         } else {
           console.log("Houve um erro ao tentar realizar o login!");
           erroDiv.style.display = "block";
+          setTimeout(sumirMensagem, 2000);
 
           resposta.text().then((texto) => {
             console.error(texto);

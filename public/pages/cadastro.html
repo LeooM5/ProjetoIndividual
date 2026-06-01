@@ -23,9 +23,7 @@
 
     <div class="container">
       <div class="box">
-        <div class="left-container">
-          <img src="" alt="" />
-        </div>
+        <div class="left-container"></div>
         <div class="right-container">
           <div class="box-right">
             <div class="cabecalho-container">
@@ -59,16 +57,17 @@
                   />
                 </div>
               </div>
-              <span
-                id="divERROOO"
-                style="
-                  color: red;
-                  text-align: center;
-                  opacity: 0;
-                  transition: 0.3s;
-                "
-              ></span>
             </div>
+            <span
+              id="divERROOO"
+              style="
+                color: red;
+                text-align: center;
+                display: none;
+                transition: 0.3s;
+                margin-top: 1em;
+              "
+            ></span>
             <div class="botao-cadastrar">
               <button onclick="cadastrar()">
                 Criar conta <i class="fa-solid fa-arrow-right"></i>
@@ -115,10 +114,13 @@
           console.log("resposta: ", resposta);
 
           if (resposta.ok) {
-            window.location = "./login.html";
+            divERROOO.style.color = "green";
+            divERROOO.style.display = "inline-block";
+            divERROOO.innerHTML = `Cadastro realizado com sucesso, redirecionando para a página de login!`;
+            setTimeout(() => (window.location = "./login.html"), 2000);
           } else if (resposta.status == 409) {
             divERROOO.innerHTML = "Este email já está em uso!";
-            divERROOO.style.opacity = 1;
+            setTimeout(() => (divERROOO.style.display = "none"), 2000);
           } else {
             throw "Houve um erro ao tentar realizar o cadastro!";
           }

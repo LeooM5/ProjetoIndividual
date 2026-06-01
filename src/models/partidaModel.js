@@ -62,6 +62,8 @@ function buscarDashboard(idUsuario) {
       p.dataPartida,
       p.tipoPartida,
       e.golsSofridos,
+      e.penaltisPartida,
+      e.golsPenalti,
       e.chutesRecebidos
     FROM estatistica e
     JOIN partida p ON e.fkPartida = p.idPartida
