@@ -68,7 +68,7 @@ function buscarDashboard(idUsuario) {
     FROM estatistica e
     JOIN partida p ON e.fkPartida = p.idPartida
     WHERE e.fkUsuario = ${idUsuario}
-    ORDER BY p.dataPartida ASC
+    ORDER BY p.dataPartida DESC
   `);
 }
 

@@ -262,11 +262,9 @@ function preencherTabelaCompleta(dados) {
 
   tbody.innerHTML = "";
 
-  console.log(dados);
+  const ordenados = [...dados];
 
-  const ordenados = [...dados].sort(
-    (a, b) => new Date(b.dataPartida) - new Date(a.dataPartida),
-  );
+  console.log(ordenados);
 
   ordenados.forEach((partida) => {
     let status = "ÓTIMO";
@@ -305,9 +303,7 @@ function preencherTabela(dados) {
 
   tbody.innerHTML = "";
 
-  const ordenados = [...dados]
-    .sort((a, b) => new Date(b.dataPartida) - new Date(a.dataPartida))
-    .slice(0, 5);
+  const ordenados = [...dados].slice(0, 5);
 
   ordenados.forEach((partida) => {
     let status = "ÓTIMO";
